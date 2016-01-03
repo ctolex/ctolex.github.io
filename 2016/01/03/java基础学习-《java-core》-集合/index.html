@@ -1,0 +1,426 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>java基础学习-《java core》-集合 | Ctolex&#39;s blog</title>
+  <meta name="author" content="ctolex">
+  
+  <meta name="description" content="记录学习、生活点滴。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="java基础学习-《java core》-集合"/>
+  <meta property="og:site_name" content="Ctolex&#39;s blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="/atom.xml" title="Ctolex&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+</head>
+
+
+<body>
+  <header id="header" class="inner">
+<div class="alignleft">
+  <h1><a href="/">Ctolex&#39;s blog</a></h1>
+  <h2><a href="/">记录学习、生活点滴。</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-01-03T10:22:24.000Z"><a href="/2016/01/03/java基础学习-《java-core》-集合/">2016-01-03</a></time>
+      
+      
+  
+    <h1 class="title">java基础学习-《java core》-集合</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><em>java core 集合章节读书笔记</em></p>
+<a id="more"></a>
+<ol>
+<li>是否可以重复<ul>
+<li>set、map中key不可以重复，map中key如果重复，后面的value会覆盖前面的value；</li>
+<li>list中可以重复，相同字符串可以存储多个，具体内存结果暂不了解。</li>
+</ul>
+</li>
+<li><p>java集合遍历元素方法-使用迭代器      </p>
+<ul>
+<li><p>第一种，使用迭代器</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">Collection</span>&lt;<span class="keyword">String&gt; </span>c = ...<span class="comment">;</span></span><br><span class="line"><span class="keyword">Iterator&lt;String&gt; </span><span class="keyword">iter </span>= c.<span class="keyword">iteraror();</span><br><span class="line"></span><span class="label">while</span>(<span class="keyword">iter.hasNext()) </span>&#123;</span><br><span class="line">	<span class="keyword">String </span>element = <span class="keyword">iter.next();</span><br><span class="line"></span>	do something with element<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第二种，for each</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">String</span> element : c) &#123;</span><br><span class="line">	<span class="keyword">do</span> something <span class="keyword">with</span> element<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Java迭代器与c++很不一样</p>
+<ul>
+<li>根据c++迭代器，可以获取指定位置上的元素，并且可以将迭代器向前移动一个位置，获取下一个元素</li>
+<li>java迭代器不同，查找一个元素的唯一方法是调用next(),而在执行查找操作时，迭代器的位置随之向前移动。应将<font color="red"> java迭代器认为在两个元素之间</font>，当调用next时，迭代器就越过下一个元素，并返回刚刚越过的那个元素的引用。</li>
+<li><p>删除元素：remove()方法将会删除上次调用next方法时返回的元素。想要删除指定位置上的某个元素，必须要越过（next())这个元素。remove()与next()之间的调用具有相互依赖性。想要删除两个相邻的元素，必须</p>
+  <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">it</span>.remove();</span><br><span class="line"><span class="keyword">it</span>.next();</span><br><span class="line"><span class="keyword">it</span>.remove();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>linked list: </p>
+<ul>
+<li>链表是一个有序集合，java链表都是双向链接的。</li>
+<li><p>链表可以反向遍历，通过</p>
+  <figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">E <span class="title">previous</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">hasPrevious</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>链表add方法在<strong>迭代器位置之前</strong>添加一个新对象（在迭代器刚越过的那个元素的后面与迭代器所在的位置之间添加新对象，迭代器的next()不会遍历新添加的对象）。</p>
+</li>
+<li>当一个刚有Iterator()返回，并指向链表表头的迭代器调用add操作时，新添加的元素将会变成列表的新表头，<strong>迭代器位置不变，在新的表头和旧的表头之间</strong>。</li>
+<li>add方法只依赖于迭代器的位置，而remove方法依赖于迭代器的状态（add可以多次连续调用，remove必须在next之后且只能调用一次）</li>
+<li>set方法用一个新的元素取代调用next或previous方法返回的上一个元素。</li>
+<li>如果一个迭代器修改集合，两一个迭代器遍历集合，则后一个会抛出ConcurrentModificationException异常。未避免并发修改产生的问题，应遵循简单规则：可以根据需要给容器添加许多迭代器，但是这些迭代器只能读取列表；另外，再单独附加一个既能读又能写的迭代器。</li>
+</ul>
+</li>
+<li>ArrayList &amp; Vector<ul>
+<li>Vector类的所有方法都是同步的（线程安全的），可以由两个线程安全地访问一个Vector对象；ArrayList的方法是不同步的（线程不安全）</li>
+<li>如果一个线程访问Vector会在同步上耗费大量时间。因此，不需要同步时使用ArrayList，不要使用Vector。</li>
+</ul>
+</li>
+<li>散列集<ul>
+<li>散列表为每一个对象计算一个整数（包括正数和负数），成为散列码</li>
+<li>自定义类要负责实现该类的hashCode方法，自己实现的hashCode方法需要与equals()兼容，即如果a.equals(b),a与b必须具有相同的散列码</li>
+<li>散列表使用链表数组实现，每个链表是一个桶。要想查找表中对象的位置，就要先计算它的散列码，然后与桶的数量进行取余，所得到的结果就是保存这个元素的桶的索引。如果该桶没有其他元素，则可以直接插入，如果有其他元素，则散列冲突。</li>
+<li>通常将桶数设置为预计元素个数的75%~150%</li>
+<li>如果散列表太满，就需要再散列（创建一个桶数更多的表，并将所有元素插入到这个新表中，然后丢弃原来的表）。</li>
+<li>填装因子（0.0~1.0之间的数值）决定何时进行再散列，默认为0.75，即表中超过75%的位置已经插入元素，这个表就会用双倍的桶数自动地进行再散列。</li>
+<li>HashSet类，实现了基于散列表的集，set没有重复的元素集合。</li>
+<li>散列集迭代器将依次访问所有的桶，访问顺序随机。</li>
+</ul>
+</li>
+<li>树集 TreeSet<ul>
+<li>树集是一个有序的集合</li>
+<li>TreeSet采用红黑树实现，每次将一个元素添加到树中时，都被放置在正确的排序位置上</li>
+<li>查找新元素的正确位置的比较次数 （log2）N</li>
+</ul>
+</li>
+<li><p>对象的比较</p>
+<ul>
+<li><p>类需要实现Comparable接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Comparable</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(T o)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Item</span>&gt; </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Item other)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.partNumber - other.partNumber;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>TreeSet中对象比较，如果对象没有实现comparable接口，可以通过将Comparator对象传给TreeSet构造器来告诉树集使用传入的比较方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Comparator</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">(T a, T b)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ItemComparator</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Item</span>&gt; </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Item a, Item b)</span> </span>&#123;</span><br><span class="line">		String descrA = a.getDescription();</span><br><span class="line">		String descrB = b.getDescription();</span><br><span class="line">		<span class="keyword">return</span> DescrA.compareTo(descrB);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后将这个类传递给树集的构造器：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ItemComparator <span class="keyword">comp</span> = <span class="keyword">new</span> ItemComparator();</span><br><span class="line">SortedSet&lt;Item&gt; sortByDescription = <span class="keyword">new</span> TreeSet&lt;&gt;(<span class="keyword">comp</span>);</span><br></pre></td></tr></table></figure>
+<p>这个比较器没有任何数据，它只是比较方法的持有器，有时将这种对象称为函数对象。函数对象通常动态定义，即定义为匿名内部类：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">SortedSet</span>&lt;<span class="keyword">Item&gt; </span>sortByDescription = new TreeSet&lt;<span class="keyword">Item&gt;(new </span></span><br><span class="line">	Comparator&lt;<span class="keyword">Item&gt;() </span>&#123;</span><br><span class="line">		public int compare(<span class="keyword">Item </span>a, <span class="keyword">Item </span><span class="keyword">b) </span>&#123;</span><br><span class="line">			<span class="keyword">String </span>descrA = a.getDescription()<span class="comment">;</span></span><br><span class="line">			<span class="keyword">String </span>descrB = <span class="keyword">b.getDescription();</span><br><span class="line"></span>			return DescrA.compareTo(descrB)<span class="comment">;</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>队列与双端队列</p>
+<ul>
+<li>接口 Deque，实现类 ArrayDeque，LinkedList </li>
+<li>队列的方法多数都有两个，区别是当为空，没有元素时，一个是抛出异常IllegalStateException/NoSuchElementException，另一个是返回false。</li>
+</ul>
+</li>
+<li><p>优先级队列（数据结构-堆）</p>
+<ul>
+<li>PriorityQueue，没有对元素进行排序，迭代遍历时（for-each）不会按照顺序输出，但是remove方法总会获得当前优先级队列中最小的元素。</li>
+</ul>
+</li>
+<li><p>映射表（Map）</p>
+<ul>
+<li>两个实现：HashMap、TreeMap，HashMap对键进行散列，TreeMap用键的整体顺序对元素进行排序，并将其组织成搜索树。HashMap比TreeMap稍快；</li>
+<li>散列或比较函数只能作用于键，不能作用于值；</li>
+<li>如果映射表中没有与给定键对应的信息，get将返回null</li>
+<li>键必须是唯一的。如果对同一个键两次调用put方法，第二个值就会取代第一个值，实际上<code>put将返回用这个键参数存储的上一个值</code></li>
+<li>映射表有3个视图：键集、值集合、键/值对集合</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set</span>&lt;K&gt; keySet()</span><br><span class="line">Collection&lt;K&gt; values()</span><br><span class="line"><span class="built_in">Set</span>&lt;<span class="built_in">Map</span>.Entry&lt;K, V&gt;&gt; entrySet()</span><br><span class="line">	</span><br><span class="line"><span class="comment">// 枚举映射表中的所有键</span></span><br><span class="line"><span class="built_in">Set</span>&lt;<span class="built_in">String</span>&gt; keys = map.keySet();</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">String</span> key : keys) &#123;</span><br><span class="line">	<span class="keyword">do</span> something <span class="keyword">with</span> key</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 同时查看键和值，通过枚举各个条目查看</span></span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">Map</span>.Entry&lt;<span class="built_in">String</span>, Employee&gt; entry : staff.entrySet()) &#123;</span><br><span class="line">	<span class="built_in">String</span> key = entry.getkey();</span><br><span class="line">	Employee value = entry.getValue();</span><br><span class="line">	<span class="keyword">do</span> something <span class="keyword">with</span> key,value</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>WeakHashMap(弱散列映射表)、LinkedHashSet(链接散列集)、LinkedHashMap（链接映射表）、EnumSet（枚举集）、EnumMap（枚举映射表）、IdentityHashMap（标识散列映射表，特殊—&gt;比较用“==”，键根据对象内存地址算，对象序列化时很有用？）</p>
+</li>
+<li><p>视图与包装器(<code>没有完全理解</code>)</p>
+<ul>
+<li>通过使用视图可以获得其他的实现了集合接口和映射表接口的对象；比如keySet方法返回一个实现Set接口的类对象，这个类的方法对原映射表进行操作。</li>
+<li><p>轻量级集包装器</p>
+<ul>
+<li><p>Arrays类的静态方法asList将返回一个包装了普通java数组的List包装器，这个方法可以将数据传递给一个期望得到列表或集合变元的方法，如:</p>
+  <figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Card</span>[] cardDeck = new <span class="keyword">Card</span>[<span class="number">52</span>];</span><br><span class="line">List&lt;<span class="keyword">Card</span>&gt; cardList = Arrays.asList(cardDeck);</span><br></pre></td></tr></table></figure>
+<p>  返回的对象不是ArrayList，它使一个视图，带有访问底层数组的get、set方法，但是所有改变数组大小的方法都会抛出<code>UnsupportedOperationException</code>,比如 <code>cardList.add(new Card(…))</code> 就会抛异常。</p>
+  <figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">List</span>&lt;<span class="keyword">String</span>&gt; names = <span class="keyword">Arrays</span>.asList(“Amy”, “Bob”, “Carl”);</span><br></pre></td></tr></table></figure>
+<p>  上面方法调用 <code>Collections.nCopies(n, anObject)</code>，将返回一个实现了List接口的<code>不可修改</code>的对象，并给人一种包含n个元素，每个元素都像是一个anObject的错觉（是不是其实只有一个对象，因为不可修改的？）。</p>
+</li>
+</ul>
+</li>
+<li>子范围<ul>
+<li>可以为很多集合建立子范围（subrange）视图，例如从一个列表中获取第10~19个元素，<code>List group2 = staff.subList(10, 20);</code>。</li>
+<li>可以将任何操作应用于子范围，并且能够自动地反映整个列表的情况。例如可以删除整个子范围 <code>group2.clear();</code>  现在元素自动地从staff列表中清除了，并且group2为空</li>
+</ul>
+</li>
+<li>不可修改视图<ul>
+<li>Collections提供了6个方法(如<code>Collections.unmodifiableCollection</code>)获得不可修改视图，返回的视图可以调用对应集合的所有方法，read方法没有问题，但是所有更改器方法都被重写为抛出<code>UnsupportedOperationException</code></li>
+<li>需要注意的是：<code>Collections.unmodifiableCollection</code>方法将返回一个集合，其equals方法不调用底层集合的equals方法，集成自Object的equals方法，只检查两个对象是否是同一个对象（同样方式处理hashCode）；但是<code>Collections.unmodifiableSet</code> 和 <code>Collections.unmodifiableSet</code> 返回集合却使用了底层集合的equals和hashCode方法</li>
+</ul>
+</li>
+<li><p>同步视图</p>
+<ul>
+<li><p>多线程访问集合，类库设计者使用视图机制来确保常规集合的线程安全，而不是实现线程安全的集合类，如：Collections类的静态synchronizedMap方法可以将任何一个映射表转换成具有同步访问方法的Map</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Map</span>&lt;<span class="built_in">String</span>, Employee&gt; <span class="built_in">map</span> = Collections<span class="built_in">.</span>synchronizedMap(<span class="literal">new</span> HashMap&lt;<span class="built_in">String</span>, Employee&gt;());</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>批操作</p>
+<ul>
+<li><p>使用类库的批操作，避免频繁地使用迭代器</p>
+  <figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Set</span>&lt;<span class="type">String</span>&gt; <span class="literal">result</span> = new <span class="type">HashSet</span>&lt;&gt;(a); // 集合的构造器，参数是保存初始值的另一个集合</span><br><span class="line"><span class="literal">result</span>.retainAll(b);  // <span class="literal">result</span>中保存了既在a中出现，也在b中出现的元素</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过使用一个子范围视图，可以将批操作限制于子列表和子集的操作上。假设希望将一个列表的前10个元素添加到另一个容器中，可以建立一个子列表用于选择前10个元素：</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">relocated.addAll(staff.subList(<span class="number">0</span>, <span class="number">10</span>));</span><br></pre></td></tr></table></figure>
+<p>  这个子范围也可以成为更改操作的对象：</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">staff.subList(<span class="number">0</span>, <span class="number">10</span>).clear();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>集合与数组之间的转换</p>
+<ul>
+<li><p>数组转集合，Arrays.asList实现:</p>
+  <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span> values = …;</span><br><span class="line">HashSet&lt;<span class="built_in">String</span>&gt; staff = <span class="keyword">new</span> HashSet&lt;&gt;(Arrays.asList(values));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将集合转换为数组：</p>
+<ul>
+<li><p>使用toArray方法：返回的数组是一个<code>Object[]</code>数组，无法改变类型</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Object</span><span class="literal">[]</span> values = staff.toArray<span class="literal">()</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用另一个toArray方法，传入参数</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>[] strings = staff.toArray(<span class="keyword">new</span> <span class="built_in">String</span>[staff.siz()]);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>集合算法</p>
+<ul>
+<li><p>排序与混排</p>
+<ul>
+<li><p>升序：Collections类的sort方法可以对实现了List接口的集合进行排序</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; staff = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">…</span><br><span class="line">Collections.sort(staff);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>降序：<code>Collections.reverseOrder()</code> 将返回一个比较器，比较器则返回 b.compareTo(a)</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">Collections</span><span class="class">.sort</span>(<span class="tag">staff</span>, <span class="tag">Collections</span><span class="class">.reverseOrder</span>());</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>乱序：Collections类的shuffle方法，功能是随机混排列表中元素的顺序</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">Collections</span><span class="class">.shuffle</span>(<span class="tag">staff</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>二分查找</p>
+<ul>
+<li><p>Collections的binarySearch方法实现了二分查找算法，前提 <code>集合必须是排好序的</code>。</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">i = Collections.<span class="keyword">binarySearch(c, </span>element)<span class="comment">;</span></span><br><span class="line">i = Collections.<span class="keyword">binarySearch(c, </span>element, comparator)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>如果返回的数值大于等于0，则表示查到，并且返回结果为匹配对象的索引，即 <code>c.get(i)</code>与element相等。如果返回负值，则表示没有匹配的元素，但是可以根据返回值<code>i</code>计算出应该将element插入到集合的哪个位置，以保持集合的有序性，插入位置为</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">insertPoint = -i - <span class="number">1</span>;  <span class="comment">// 插入位置</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(i &lt; <span class="number">0</span>) </span><br><span class="line">	c.add(-i - <span class="number">1</span>, element);     <span class="comment">// 将把元素插入到正确的位置上</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/java/">java</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/java基础/">java基础</a>
+  </div>
+
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3326447" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    
+    <div class="clearfix"></div>
+</nav>
+
+
+
+<section id="comment">
+
+<!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"zippera"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END -->  
+
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:ctolex.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/java/">java</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>本名：周涛</li>
+<li>花名：楚韬（ctolex）</li>
+<li>职业：程序员</li>
+<li>Theme copy from <a href="https://github.com/zippera/lightum">Lightum</a>
+</ul>
+</div>
+
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><section>
+Theme of <a href="https://github.com/zippera/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/ctolex" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/img/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>
