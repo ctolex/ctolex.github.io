@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>vim键盘图 | Ctolex&#39;s blog</title>
+  <title>java基础学习-《java core》-异常 | Ctolex&#39;s blog</title>
   <meta name="author" content="ctolex">
   
   <meta name="description" content="记录学习、生活点滴。">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="vim键盘图"/>
+  <meta property="og:title" content="java基础学习-《java core》-异常"/>
   <meta property="og:site_name" content="Ctolex&#39;s blog"/>
 
   
@@ -68,19 +68,36 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-01-04T15:47:52.000Z"><a href="/2016/01/04/Vim键盘图/">2016-01-04</a></time>
+        <time datetime="2016-01-05T01:44:50.000Z"><a href="/2016/01/05/java基础学习-《java-core》-异常/">2016-01-05</a></time>
       
       
   
-    <h1 class="title">vim键盘图</h1>
+    <h1 class="title">java基础学习-《java core》-异常</h1>
   
 
     </header>
     <div class="entry">
       
-        <p><em>多多使用，熟能生巧</em></p>
-<a id="more"></a>
-<p><img src="http://7xpqqv.com1.z0.glb.clouddn.com/image/vim-keyboard.jpg" alt="This is a picture."></p>
+        <h1 id="u5F02_u5E38"><a href="#u5F02_u5E38" class="headerlink" title="异常"></a>异常</h1><p><em>异常的使用方法</em><br><a id="more"></a></p>
+<h2 id="u5F02_u5E38_u5C42_u6B21_u7ED3_u6784"><a href="#u5F02_u5E38_u5C42_u6B21_u7ED3_u6784" class="headerlink" title="异常层次结构"></a>异常层次结构</h2><ul>
+<li>java异常都是继承自Throwable，在下一层分为两个分支：Error 和 Exception。<ul>
+<li>Error分支描述java运行时系统的内部错误和资源耗尽错误，属严重错误，应用程序不应该抛出该异常。如果出现这样异常，将告知用户，并终止程序。</li>
+<li>java程序设计时需要关注Exception层次结构。</li>
+</ul>
+</li>
+<li>java异常分为<code>checked</code>和<code>unchecked</code>。<ul>
+<li>图中红色部分表示<code>checked exceptions</code>（受检查异常）,方法中抛出<code>checked exceptions</code>必须被捕获 或者 方法中throws语句声明。受检查异常之所以这样命名，是因为这种异常必须在编译时检查处理。java编译器、java虚拟机都会进行检查，确保遵守了这个规则。</li>
+<li>图中绿色部分表示<code>unchecked exception</code>，这种异常可以不捕获，根据程序逻辑决定是否需要捕获处理。例如 null pointer，divide by 0, etc.<div align="center"><br><img src="http://7xpqqv.com1.z0.glb.clouddn.com/image/java_exception.jpeg?imageView2/2/w/400" alt="java异常层次结构图"><br></div>
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="u53C2_u8003"><a href="#u53C2_u8003" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="http://www.programcreek.com/2009/02/diagram-for-hierarchy-of-exception-classes/" target="_blank" rel="external">Diagram of Exception Hierarchy</a></li>
+<li><a href="http://blog.csdn.net/renfufei/article/details/16344847" target="_blank" rel="external">Java 异常类层次结构</a></li>
+</ul>
 
       
     </div>
@@ -89,13 +106,13 @@
         
   
   <div class="categories">
-    <a href="/categories/vim/">vim</a>
+    <a href="/categories/java/">java</a>
   </div>
 
         
   
   <div class="tags">
-    <a href="/tags/vim/">vim</a>
+    <a href="/tags/java/">java</a>, <a href="/tags/异常/">异常</a>
   </div>
 
 <!-- Baidu Button BEGIN -->
@@ -123,10 +140,8 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 
  <nav id="pagination" >
     
-    <a href="/2016/01/05/java基础学习-《java-core》-异常/" class="alignleft prev" >上一页</a>
     
-    
-    <a href="/2016/01/03/java基础学习-《java-core》-集合/" class="alignright next" >下一页</a>
+    <a href="/2016/01/04/Vim键盘图/" class="alignright next" >下一页</a>
     
     <div class="clearfix"></div>
 </nav>
