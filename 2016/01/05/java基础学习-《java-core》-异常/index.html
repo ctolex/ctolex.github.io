@@ -86,11 +86,40 @@
 </ul>
 </li>
 <li>java异常分为<code>checked</code>和<code>unchecked</code>。<ul>
-<li>图中红色部分表示<code>checked exceptions</code>（受检查异常）,方法中抛出<code>checked exceptions</code>必须被捕获 或者 方法中throws语句声明。受检查异常之所以这样命名，是因为这种异常必须在编译时检查处理。java编译器、java虚拟机都会进行检查，确保遵守了这个规则。</li>
+<li>图中红色部分表示<code>checked exceptions</code>（受检查异常、已检查异常）,方法中抛出<code>checked exceptions</code>必须被捕获 或者 方法中throws语句声明。受检查异常之所以这样命名，是因为这种异常必须在编译时检查处理。java编译器、java虚拟机都会进行检查，确保遵守了这个规则。</li>
 <li>图中绿色部分表示<code>unchecked exception</code>，这种异常可以不捕获，根据程序逻辑决定是否需要捕获处理。例如 null pointer，divide by 0, etc.<div align="center"><br><img src="http://7xpqqv.com1.z0.glb.clouddn.com/image/java_exception.jpeg?imageView2/2/w/400" alt="java异常层次结构图"><br></div>
 
-
 </li>
+</ul>
+</li>
+</ul>
+<h2 id="u81EA_u5B9A_u4E49_u5F02_u5E38"><a href="#u81EA_u5B9A_u4E49_u5F02_u5E38" class="headerlink" title="自定义异常"></a>自定义异常</h2><p>定义一个派生自Exception的类，或派生于Exception的子类的类。通常，定义的类应该包含两个构造器，一个是默认的构造器，另一个是带有详细描述信息的构造器。</p>
+<h2 id="u5F02_u5E38_u7684_u629B_u51FA"><a href="#u5F02_u5E38_u7684_u629B_u51FA" class="headerlink" title="异常的抛出"></a>异常的抛出</h2><ul>
+<li>未检查异常（<code>unchecked exception</code>，从Error或RuntimeException继承的异常）在方法中不需要声明，程序代码具有抛出这些异常的潜能；受检查异常（<code>checked exceptions</code>）必须要捕获或者抛出。总之，一个方法必须声明所有可能抛出的已检查异常，而未检查异常要么不可控制（Error），要么就应该避免发生。</li>
+<li>如果子类覆盖超类的方法，子类方法中声明的已检查异常不能比超类方法中声明的异常更通用。即子类可以抛出更特定的异常，或者根本不抛出任何异常；如果超类方法中没有抛出任何已检查异常，子类也不能抛出任何已检查异常。</li>
+<li>与C++区别，java中只能抛出Throwable子类的异常，c++中可以抛出任何类型的异常。</li>
+</ul>
+<h2 id="u5F02_u5E38_u7684_u6355_u83B7"><a href="#u5F02_u5E38_u7684_u6355_u83B7" class="headerlink" title="异常的捕获"></a>异常的捕获</h2><ul>
+<li>通常两种处理方式： catch捕获 or 继续往上抛出。</li>
+<li>通常，应该捕获那些知道如何处理的异常，而那些不知道怎么处理的异常继续上抛。</li>
+<li><p>Java SE 7中，同一个catch子句可以捕获多个异常类型，使用<code>|</code>分隔异常，相当于<code>或</code>，例如：</p>
+  <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">try</span> &#123;</span><br><span class="line">	...</span><br><span class="line">&#125; <span class="tag">catch</span>(FileNotFoundException | UnknownHostException e) &#123;</span><br><span class="line">	... <span class="comment">// 捕获多个异常时，异常变量隐含为final变量，不能为e赋不同的值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>异常的<code>再次抛出</code>：</p>
+<ul>
+<li><p>通常方式：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	...</span><br><span class="line">&#125; <span class="keyword">catch</span>(SQLException e) &#123;</span><br><span class="line">	<span class="keyword">throw</span> <span class="keyword">new</span> ServletException(<span class="string">"error: "</span> + e.getMessage());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>建议方式（包装技术）：将原始异常设置为新异常的“原因”</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">	...</span><br><span class="line">&#125; catch(SQLException <span class="keyword">e</span>) &#123;</span><br><span class="line">	Throwable <span class="keyword">se</span> = new ServletException(<span class="string">"database error"</span>);</span><br><span class="line">	<span class="keyword">se</span>.initCause(<span class="keyword">e</span>);</span><br><span class="line">	throw <span class="keyword">se</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当捕获异常时，可以通过以下语句得到原始异常。</span></span><br><span class="line">Throwable <span class="keyword">e</span> = <span class="keyword">se</span>.getCause();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当一个方法中发生了一个已检查异常，而不允许抛出时，可以捕获这个异常，并将它包装成一个运行时异常。</p>
+</li>
+</ul>
+</li>
+<li>finally子句<ul>
+<li>try、finally子句都包含return语句：try执行到return后，方法返回前会执行finally子句，finally子句中的return返回值会覆盖try中return的返回值。</li>
+<li>通常最后清理资源的语句放finally子句中，但是这样也可能有问题，清理资源的方法也可能抛出异常。</li>
 </ul>
 </li>
 </ul>
