@@ -117,15 +117,39 @@
 </li>
 </ul>
 </li>
-<li>finally子句<ul>
+<li><p>finally子句</p>
+<ul>
 <li>try、finally子句都包含return语句：try执行到return后，方法返回前会执行finally子句，finally子句中的return返回值会覆盖try中return的返回值。</li>
-<li>通常最后清理资源的语句放finally子句中，但是这样也可能有问题，清理资源的方法也可能抛出异常。</li>
+<li><p>通常最后清理资源的语句放finally子句中，但是这样也可能有问题，清理资源的方法也可能抛出异常。如下，假设try子句中抛出了一些非IOException的异常，这些异常只有方法的调用者才能处理，执行finally子句调用close方法，close方法本身可能抛出IOException，当出现这种情况时，原始的异常将会丢失，转而抛出close方法的异常。（更好的处理方法是使用try-with-resources）</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">InputStream <span class="keyword">in</span> = ...;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	...</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">	<span class="keyword">in</span>.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>try-with-resources语句</p>
+<ul>
+<li><p>带资源的try语句的最简形式</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>(Resource res = ...) &#123;</span><br><span class="line">	work <span class="keyword">with</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用条件：资源必须是实现<code>AutoCloseable</code>接口的类，或者是实现<code>Closeable</code>接口的类（<code>Closeable</code>继承自<code>AutoCloseable</code>），当try块退出时，会自动调用<code>res.close()</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AutoCloseable</span> </span>&#123;</span><br><span class="line">     	<span class="function"><span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Closeable</span> <span class="keyword">extends</span> <span class="title">AutoCloseable</span> </span>&#123;</span><br><span class="line">     	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>AutoCloseable</code>接口的close方法抛出Exception,<code>Closeable</code>接口的close方法抛出IOException。</li>
+<li><code>AutoCloseable</code>接口的close方法只能调用一次；<code>Closeable</code>接口的close方法幂等，可以调用多次。</li>
+</ul>
+</li>
+<li><p>可以指定多个资源</p>
+<figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>(Scanner <span class="keyword">in</span> = <span class="keyword">new</span> Scanner(<span class="keyword">new</span> FileInputStream(<span class="string">"/usr/.../words"</span>));</span><br><span class="line">	PrintWriter <span class="keyword">out</span> = <span class="keyword">new</span> PrintWrite(<span class="string">"out.txt"</span>)) &#123;</span><br><span class="line">	<span class="keyword">while</span>(<span class="keyword">in</span>.hasNext()) &#123;</span><br><span class="line">		<span class="keyword">out</span>.println(<span class="keyword">in</span>.next());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>带资源的try语句很好的处理了try语句块和资源close方法都抛出异常的这种情况。try语句块抛出的异常会重新抛出，而close方法抛出的异常会“被抑制”，并由addSuppressed方法增加到try语句块抛出的异常中（<code>try语句块异常.addSuppressed(close方法抛出异常)</code>），可以通过调用getSuppressed方法得到从close方法中抛出并被抑制的异常列表。</p>
+</li>
+<li>带资源的try语句自身也可以有catch子句和一个finally子句，这些子句会在关闭资源后执行。</li>
 </ul>
 </li>
 </ul>
 <h2 id="u53C2_u8003"><a href="#u53C2_u8003" class="headerlink" title="参考"></a>参考</h2><ul>
 <li><a href="http://www.programcreek.com/2009/02/diagram-for-hierarchy-of-exception-classes/" target="_blank" rel="external">Diagram of Exception Hierarchy</a></li>
 <li><a href="http://blog.csdn.net/renfufei/article/details/16344847" target="_blank" rel="external">Java 异常类层次结构</a></li>
+<li><a href="http://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html#suppressed-exceptions" target="_blank" rel="external">The try-with-resources Statement</a></li>
 </ul>
 
       
