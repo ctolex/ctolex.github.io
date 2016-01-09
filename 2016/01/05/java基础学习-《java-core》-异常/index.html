@@ -144,6 +144,17 @@
 </li>
 <li>带资源的try语句自身也可以有catch子句和一个finally子句，这些子句会在关闭资源后执行。</li>
 </ul>
+<h2 id="u5F02_u5E38_u4F7F_u7528_u6280_u5DE7"><a href="#u5F02_u5E38_u4F7F_u7528_u6280_u5DE7" class="headerlink" title="异常使用技巧"></a>异常使用技巧</h2><ul>
+<li>只在异常情况下使用异常。异常不能代替简单的测试，异常的处理要比简单的判断时间长很多。</li>
+<li>不要过分地细化异常，防止代码量的急剧膨胀。</li>
+<li>利用异常层次结构<ul>
+<li>不要只抛出RuntimeException，寻找更合适的子类或自定义异常</li>
+<li>不要只捕获Throwable异常</li>
+</ul>
+</li>
+<li>检测错误时，“苛刻”要比放任更好（早抛出）。</li>
+<li>不要羞于传递异常，让高层的方法通知用户发生了错误（晚捕获）。</li>
+</ul>
 <h2 id="u53C2_u8003"><a href="#u53C2_u8003" class="headerlink" title="参考"></a>参考</h2><ul>
 <li><a href="http://www.programcreek.com/2009/02/diagram-for-hierarchy-of-exception-classes/" target="_blank" rel="external">Diagram of Exception Hierarchy</a></li>
 <li><a href="http://blog.csdn.net/renfufei/article/details/16344847" target="_blank" rel="external">Java 异常类层次结构</a></li>
@@ -190,6 +201,8 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 
 
  <nav id="pagination" >
+    
+    <a href="/2016/01/09/javascript入门/" class="alignleft prev" >上一页</a>
     
     
     <a href="/2016/01/04/Vim键盘图/" class="alignright next" >下一页</a>
@@ -238,6 +251,8 @@ var duoshuoQuery = {short_name:"ctolex"};
   <ul class="entry">
   
     <li><a href="/categories/java/">java</a><small>2</small></li>
+  
+    <li><a href="/categories/javascript/">javascript</a><small>1</small></li>
   
     <li><a href="/categories/vim/">vim</a><small>1</small></li>
   
