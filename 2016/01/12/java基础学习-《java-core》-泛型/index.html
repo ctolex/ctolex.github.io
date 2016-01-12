@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>vim键盘图 | Ctolex&#39;s blog</title>
+  <title>java基础学习-《java-core》-泛型 | Ctolex&#39;s blog</title>
   <meta name="author" content="ctolex">
   
   <meta name="description" content="记录学习、生活点滴。">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="vim键盘图"/>
+  <meta property="og:title" content="java基础学习-《java-core》-泛型"/>
   <meta property="og:site_name" content="Ctolex&#39;s blog"/>
 
   
@@ -68,19 +68,30 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-01-04T15:47:52.000Z"><a href="/2016/01/04/Vim键盘图/">2016-01-04</a></time>
+        <time datetime="2016-01-12T15:19:23.000Z"><a href="/2016/01/12/java基础学习-《java-core》-泛型/">2016-01-12</a></time>
       
       
   
-    <h1 class="title">vim键盘图</h1>
+    <h1 class="title">java基础学习-《java-core》-泛型</h1>
   
 
     </header>
     <div class="entry">
       
-        <p><em>多多使用，熟能生巧</em></p>
-<a id="more"></a>
-<p><img src="http://7xpqqv.com1.z0.glb.clouddn.com/image/vim-keyboard.jpg" alt="This is a picture."></p>
+        <p><em>java泛型基础学习</em><br><a id="more"></a></p>
+<h2 id="u5B9A_u4E49_u7B80_u5355_u6CDB_u578B_u7C7B"><a href="#u5B9A_u4E49_u7B80_u5355_u6CDB_u578B_u7C7B" class="headerlink" title="定义简单泛型类"></a>定义简单泛型类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Pair</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> T first;</span><br><span class="line">			</span><br><span class="line">	<span class="function"><span class="keyword">public</span> T <span class="title">getFirst</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> first; &#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFirst</span><span class="params">(T newValue)</span> </span>&#123; <span class="keyword">this</span>.first = newValue; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>泛型可以有多个类型变量 <code>public class Pair&lt;T, U&gt; { ... }</code>。</li>
+<li>元素类型常用大写形式表示，Java库中使用变量 E 表示集合中的元素类型，K 和 V 分别表示表中的关键字和值的类型，T表示任何类型。</li>
+</ul>
+<h2 id="u6CDB_u578B_u65B9_u6CD5"><a href="#u6CDB_u578B_u65B9_u6CD5" class="headerlink" title="泛型方法"></a>泛型方法</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> ArrayAlg&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">T <span class="title">getMiddle</span><span class="params">(T... a)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> a[a.length / <span class="number">2</span>];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>方法在普通类中定义。</li>
+<li>类型变量<code>&lt;T&gt;</code>放在修饰符（public static）之后，返回值（T）之前。</li>
+<li><p>调用该泛型方法:</p>
+  <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span> middle = ArrayAlg.&lt;<span class="built_in">String</span>&gt;getMiddle(<span class="string">"John"</span>, <span class="string">"Q."</span>, <span class="string">"Public"</span>)<span class="comment">;</span></span><br><span class="line">// 多数情况下，方法调用中可以省略&lt;<span class="built_in">String</span>&gt;类型参数</span><br><span class="line"><span class="built_in">String</span> middle = ArrayAlg.getMiddle(<span class="string">"John"</span>, <span class="string">"Q."</span>, <span class="string">"Public"</span>)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
@@ -89,13 +100,13 @@
         
   
   <div class="categories">
-    <a href="/categories/vim/">vim</a>
+    <a href="/categories/java/">java</a>
   </div>
 
         
   
   <div class="tags">
-    <a href="/tags/vim/">vim</a>
+    <a href="/tags/java/">java</a>, <a href="/tags/泛型/">泛型</a>
   </div>
 
 <!-- Baidu Button BEGIN -->
@@ -123,10 +134,8 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 
  <nav id="pagination" >
     
-    <a href="/2016/01/05/java基础学习-《java-core》-异常/" class="alignleft prev" >上一页</a>
     
-    
-    <a href="/2016/01/03/java基础学习-《java-core》-集合/" class="alignright next" >下一页</a>
+    <a href="/2016/01/10/《星球大战7-原力觉醒》观后/" class="alignright next" >下一页</a>
     
     <div class="clearfix"></div>
 </nav>
