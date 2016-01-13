@@ -92,6 +92,18 @@
   <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span> middle = ArrayAlg.&lt;<span class="built_in">String</span>&gt;getMiddle(<span class="string">"John"</span>, <span class="string">"Q."</span>, <span class="string">"Public"</span>)<span class="comment">;</span></span><br><span class="line">// 多数情况下，方法调用中可以省略&lt;<span class="built_in">String</span>&gt;类型参数</span><br><span class="line"><span class="built_in">String</span> middle = ArrayAlg.getMiddle(<span class="string">"John"</span>, <span class="string">"Q."</span>, <span class="string">"Public"</span>)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<h2 id="u7C7B_u578B_u53D8_u91CF_u7684_u9650_u5B9A"><a href="#u7C7B_u578B_u53D8_u91CF_u7684_u9650_u5B9A" class="headerlink" title="类型变量的限定"></a>类型变量的限定</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public static &lt;<span class="literal">T</span> extends Comparable&gt; <span class="literal">T</span> min(<span class="literal">T</span>[] a) <span class="keyword">...</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>表示T应该是绑定类型（Comparable）的子类型，注意使用的是extends关键字，不是implements。</li>
+<li>T和绑定类型可以是类，也可以是接口。</li>
+<li>一个类型变量可以由多个限定 <code>T extends Comparable  &amp; Serializable</code>，限定类型用 <code>&amp;</code> 分隔，而类型变量用 <code>,</code> 分隔。</li>
+<li>注意：限定中至多有个一个类，可以有多个接口。如果用一个类作为限定，它必须是限定列表中的第一个。</li>
+</ul>
+<h2 id="u6CDB_u578B_u4EE3_u7801_u548C_u865A_u62DF_u673A"><a href="#u6CDB_u578B_u4EE3_u7801_u548C_u865A_u62DF_u673A" class="headerlink" title="泛型代码和虚拟机"></a>泛型代码和虚拟机</h2><ul>
+<li>虚拟机没有泛型类型，所有对象都属于普通类。</li>
+<li>无论何时定义的一个泛型类，都自动提供了一个相应的原始类型。擦除类型变量，并替换为限定类型（无限定类型的变量用Object）</li>
+<li>注意：原始类型用<code>第一个限定的变量</code>来替换，如果没有给定限定就用Object替换。如果有多个限定类型，应该将标签（tagging）接口（没有方法的接口）放在边界列表的末尾。</li>
+</ul>
 
       
     </div>
