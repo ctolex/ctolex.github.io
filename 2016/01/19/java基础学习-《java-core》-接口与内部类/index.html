@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>《星球大战7 原力觉醒》观后感 | Ctolex&#39;s blog</title>
+  <title>java基础学习-《java-core》-接口与内部类 | Ctolex&#39;s blog</title>
   <meta name="author" content="ctolex">
   
   <meta name="description" content="记录学习、生活点滴。">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="《星球大战7 原力觉醒》观后感"/>
+  <meta property="og:title" content="java基础学习-《java-core》-接口与内部类"/>
   <meta property="og:site_name" content="Ctolex&#39;s blog"/>
 
   
@@ -68,26 +68,25 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-01-10T08:43:12.000Z"><a href="/2016/01/10/《星球大战7-原力觉醒》观后/">2016-01-10</a></time>
+        <time datetime="2016-01-19T01:25:02.000Z"><a href="/2016/01/19/java基础学习-《java-core》-接口与内部类/">2016-01-19</a></time>
       
       
   
-    <h1 class="title">《星球大战7 原力觉醒》观后感</h1>
+    <h1 class="title">java基础学习-《java-core》-接口与内部类</h1>
   
 
     </header>
     <div class="entry">
       
-        <p><em>2016-01-10上午10:20~12:30 在杭州西溪印象城观看</em><br><a id="more"></a></p>
-<p><img src="http://7xpqqv.com1.z0.glb.clouddn.com/imagestar_wars_7.jpg" alt="star wars 7-1"></p>
-<p>我电影看得不多，也不是一个资深的星战影迷，单纯觉得好看，就迫不及待地买票去看了。</p>
-<p>现在想想，读大学之前很少看电影的，一是上学，没有什么自由的时间，也没钱，二是也没条件看。星战应该是在大学快结束的时候把它的六部基本看完的，而且我是先看前传的，后来才看的正传，所以对正传也没有什么特别的情结。残留的印象是前传的三部曲感觉特效十足，绝地武士多，打斗场面壮观；正传是因为较早，特效差些，不过正面人物刻画的好，还有些幽默风趣在里面。我是觉得都挺好看的，所以我也就冲着故事情结、震撼场面去了。</p>
-<p><img src="http://7xpqqv.com1.z0.glb.clouddn.com/imagestar_wars_7_2.jpg" alt="star wars 7-2"></p>
-<p>想想影片拍到第七部也挺不容易的，正传3部出来时我都还没出生呢，所以现在能看到那些耗费大量人力、物力拍下的经典影片是一件很幸运的事，这是一个很好的时代。时隔上部前传作品有10年了，如果是接上正传的话，有30+年了，电影中剧情也是30年以后。30年可以发生很多事情，特别是这30年来变化太快，不同年龄段的人成长环境不一样，各有各的想法，对待这个系列的影片也不一样。有的人从来可能都没看过，看看图个新鲜；也有的像我这样的了解点剧情，想知道故事后续发展，看个场面；还有的心里有个情结，看着这个影片可以追忆过去数十年的时光，想着自己年少时初看影片时的震撼，想着这些年时光的流逝… 可能回想很多，当然也可能什么都没想，看电影嘛，为的就是娱乐，放松。</p>
-<p>就影片而言，第七部是后传新篇章的第一部了，你可能会觉得故事情结和之前的有些雷同啊什么的，这些都是不重要的，毕竟人家也是要考虑成本，也是要赚钱的嘛。对于像我这样的伪影迷，重要的是原力和绝地武士还在，光剑的打斗场面还在，光明与黑暗的碰撞还在，那经典音乐能够想起就可以了。话说一代新人换旧人，主角也换成女性了（黛茜·雷德利饰演蕾伊，92年的美女哦），哈里森·福特演的汉·索罗也挂了，被自己的儿子杀了，这个一个悲伤的故事哎，最后蕾伊也找到了卢克，估计后续剧情就是卢克训练雷伊，然后雷伊与同伴对抗黑暗武士了。</p>
-<p>断断续续写了点乱七八糟的，算是没有白看吧。不管《原力觉醒》评价怎样，第八、九部出来还是会去看的。</p>
-<p>最后来句经典台词：May the force be with you！</p>
-<p><img src="http://7xpqqv.com1.z0.glb.clouddn.com/imagestat_wars_7_1.jpg" alt="star wars 7-3"></p>
+        <p><em>java core基础，接口与内部类</em><br><a id="more"></a></p>
+<h2 id="u63A5_u53E3"><a href="#u63A5_u53E3" class="headerlink" title="接口"></a>接口</h2><ol>
+<li>接口中的所有方法都自动地属于public，因此接口中声明方法时，不必提供关键字public。不过，在实现接口时，必须把方法声明为public。</li>
+<li><p>接口中可以包含常量，并且接口中的域将被自动设为<code>public static final</code>。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Powered</span> <span class="keyword">extends</span> <span class="title">Moveable</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">milesPerGallon</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="keyword">double</span> SPEED_LIMIT = <span class="number">95</span>; <span class="comment">// a public static final constant</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一个类只能拥有一个超类，但是却可以实现多个接口，使用<code>,</code>将实现的各个接口分隔开。    </p>
+</li>
+</ol>
 
       
     </div>
@@ -96,13 +95,13 @@
         
   
   <div class="categories">
-    <a href="/categories/观后感/">观后感</a>
+    <a href="/categories/java/">java</a>
   </div>
 
         
   
   <div class="tags">
-    <a href="/tags/星战7/">星战7</a>, <a href="/tags/电影/">电影</a>
+    <a href="/tags/java/">java</a>
   </div>
 
 <!-- Baidu Button BEGIN -->
@@ -130,10 +129,8 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 
  <nav id="pagination" >
     
-    <a href="/2016/01/12/java基础学习-《java-core》-泛型/" class="alignleft prev" >上一页</a>
     
-    
-    <a href="/2016/01/09/javascript入门/" class="alignright next" >下一页</a>
+    <a href="/2016/01/12/java基础学习-《java-core》-泛型/" class="alignright next" >下一页</a>
     
     <div class="clearfix"></div>
 </nav>
