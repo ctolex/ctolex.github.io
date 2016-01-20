@@ -84,7 +84,22 @@
 <li><p>接口中可以包含常量，并且接口中的域将被自动设为<code>public static final</code>。</p>
  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Powered</span> <span class="keyword">extends</span> <span class="title">Moveable</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">milesPerGallon</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="keyword">double</span> SPEED_LIMIT = <span class="number">95</span>; <span class="comment">// a public static final constant</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>一个类只能拥有一个超类，但是却可以实现多个接口，使用<code>,</code>将实现的各个接口分隔开。    </p>
+<li><p>一个类只能拥有一个超类，但是却可以实现多个接口，使用<code>,</code>将实现的各个接口分隔开。</p>
+</li>
+</ol>
+<h2 id="u5BF9_u8C61_u514B_u9686"><a href="#u5BF9_u8C61_u514B_u9686" class="headerlink" title="对象克隆"></a>对象克隆</h2><ol>
+<li>clone方法是Object类的一个protected方法，默认的克隆操作是浅拷贝，即将各个域进行对应的拷贝。如果所有数据域都属于数值或基本类型，则没有问题；如果对象包含子对象的引用，默认的拷贝会使两个域引用同一个子对象。</li>
+<li><p>使用clone通常需要：</p>
+<ul>
+<li>实现Cloneable接口</li>
+<li>使用public访问修饰符重新定义clone方法</li>
+<li><p>实现深拷贝，克隆所有可变的实例于</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span> <span class="keyword">implements</span> <span class="title">Cloneable</span> </span>&#123;</span><br><span class="line">	...</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Employee <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">		<span class="comment">// call Object.clone()</span></span><br><span class="line">		Employee cloned = (Employee)<span class="keyword">super</span>.clone();</span><br><span class="line">		<span class="comment">// clone mutable fields</span></span><br><span class="line">		cloned.hireDay = (Date)hireDay.clone(); <span class="comment">// Date类实现了Cloneable接口</span></span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> cloned;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>所有的数据类型都包含一个clone方法，并且这个方法被设为public，而不是protected。</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] luckyNumbers = &#123; <span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> &#125;;</span><br><span class="line"><span class="keyword">int</span>[] cloned = luckyNumbers.clone();</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 
