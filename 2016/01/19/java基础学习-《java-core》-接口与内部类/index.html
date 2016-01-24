@@ -102,6 +102,16 @@
  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] luckyNumbers = &#123; <span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> &#125;;</span><br><span class="line"><span class="keyword">int</span>[] cloned = luckyNumbers.clone();</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+<h2 id="u5185_u90E8_u7C7B"><a href="#u5185_u90E8_u7C7B" class="headerlink" title="内部类"></a>内部类</h2><ol>
+<li>使用原因<ul>
+<li>内部类方法可以访问该类定义所在的作用域中的数据，包括私有数据。</li>
+<li>内部类可以对同一个包中的其他类隐藏起来。</li>
+<li>匿名内部类可以作回调函数使用。</li>
+</ul>
+</li>
+<li><p>内部类既可以访问自身的数据域，也可以访问创建他的外围类对象的数据域。这个功能的实现是因为内部类的对象有一个隐式引用，该引用指向实例化该内部对象的外围类对象。 外围类的引用在构造器中设置，编译器会修改所有内部类的构造器，添加一个外围类的引用。</p>
+ <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">	</span><br></pre></td></tr></table></figure></li>
+</ol>
 
       
     </div>
