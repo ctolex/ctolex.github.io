@@ -110,9 +110,48 @@
 </ul>
 </li>
 <li><p>内部类既可以访问自身的数据域，也可以访问创建他的外围类对象的数据域。这个功能的实现是因为内部类的对象有一个隐式引用，该引用指向实例化该内部对象的外围类对象。 外围类的引用在构造器中设置，编译器会修改所有内部类的构造器，添加一个外围类的引用。</p>
- <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">	</span><br></pre></td></tr></table></figure></li>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TalkingClock</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> interval;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">boolean</span> beep;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">TalkingClock</span><span class="params">(<span class="keyword">int</span> interval, <span class="keyword">boolean</span> beep)</span> </span>&#123; ... &#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span> </span>&#123; </span><br><span class="line">		ActionListener listener = <span class="keyword">new</span> TimePrinter();</span><br><span class="line">		Timer t = <span class="keyword">new</span> Timer(interval, listener);</span><br><span class="line">		t.start();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TimePrinter</span> <span class="keyword">implements</span> <span class="title">ActionListener</span> </span>&#123;</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(ActionEvent event)</span> </span>&#123;</span><br><span class="line">			Date now = <span class="keyword">new</span> Date();</span><br><span class="line">			<span class="keyword">if</span>(beep) Tookit.getDefaultTookit().beep();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
+<ol>
+<li><p>内部类特殊的语法规则</p>
+<ul>
+<li><p>外围类的引用可以使用 <code>OuterClass.this.XXX</code> 的方式</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span>(<span class="params">ActionEvent <span class="keyword">event</span></span>) </span>&#123;</span><br><span class="line">	...</span><br><span class="line">	<span class="keyword">if</span>(TalkingClock.<span class="keyword">this</span>.beep) Tookit.getDefaultTookit().beep();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code>* 内部对象的构造器可以使用 `outerObject.new InnerClass(params)`
 
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ActionListener listener = <span class="keyword">this</span>.<span class="keyword">new</span> TimePrinter();</span><br></pre></td></tr></table></figure>
+
+
+* 可以通过显式地命名将外围类引用设置为其他的对象。如果TimePrinter是一个内部共有类，则对任意的时钟对象都可以构造一个TimePrinter。
+
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TalkingClock jab = <span class="keyword">new</span> TalkingClock(<span class="number">1000</span>, <span class="literal">true</span>);</span><br><span class="line">TalkingClock.TimePrinter listener = jab.<span class="keyword">new</span> TimePrinter();</span><br></pre></td></tr></table></figure>
+
+
+* 在外围类的作用域之外，可以 `OuterClass.InnerClass` 这样引用内部类。 
+</code></pre><ol>
+<li>内部类编译</li>
+</ol>
+<pre><code>javac TalkingClock.java 输出
+
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TalkingClock<span class="variable">$TimePrinter</span>.class</span><br><span class="line">TalkingClock.class</span><br></pre></td></tr></table></figure>
+
+javap TalkingClock 输出如下
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Compiled from <span class="string">"TalkingClock.java"</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TalkingClock</span> </span>&#123;</span><br><span class="line"> 		<span class="function"><span class="keyword">public</span> <span class="title">TalkingClock</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">boolean</span>)</span></span>;</span><br><span class="line"> 		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span>;</span><br><span class="line"> 		<span class="keyword">static</span> <span class="keyword">boolean</span> access$<span class="number">000</span>(TalkingClock);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+如果在TimePrinter中也使用interval的值，    javap TalkingClock 输出如下
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Compiled from <span class="string">"TalkingClock.java"</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TalkingClock</span> </span>&#123;</span><br><span class="line">  	<span class="function"><span class="keyword">public</span> <span class="title">TalkingClock</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">boolean</span>)</span></span>;</span><br><span class="line">  	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span>;</span><br><span class="line">  	<span class="keyword">static</span> <span class="keyword">boolean</span> access$<span class="number">000</span>(TalkingClock);</span><br><span class="line">  	<span class="keyword">static</span> <span class="keyword">int</span> access$<span class="number">100</span>(TalkingClock);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+如果TalkingClock中再加一个String类型的name变量，TimePrinter中也是用，javap TalkingClock 输出如下
+
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Compiled from <span class="string">"TalkingClock.java"</span></span><br><span class="line">public class TalkingClock &#123;</span><br><span class="line">	public TalkingClock(int, boolean, java.lang.String);</span><br><span class="line">	public void start();</span><br><span class="line">	static boolean access<span class="variable">$000</span>(TalkingClock);</span><br><span class="line">	static int access<span class="variable">$100</span>(TalkingClock);</span><br><span class="line">	static java.lang.String access<span class="variable">$200</span>(TalkingClock);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
       
     </div>
     <footer>
