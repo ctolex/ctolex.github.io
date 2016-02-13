@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>java基础学习-《java-core》多线程 | Ctolex&#39;s blog</title>
+  <title>《工作前5年，决定你一生的财富》读书笔记 | Ctolex&#39;s blog</title>
   <meta name="author" content="ctolex">
   
   <meta name="description" content="记录学习、生活点滴。">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="java基础学习-《java-core》多线程"/>
+  <meta property="og:title" content="《工作前5年，决定你一生的财富》读书笔记"/>
   <meta property="og:site_name" content="Ctolex&#39;s blog"/>
 
   
@@ -68,45 +68,19 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-01-27T01:39:26.000Z"><a href="/2016/01/27/java基础学习-《java-core》多线程/">2016-01-27</a></time>
+        <time datetime="2016-01-31T09:35:21.000Z"><a href="/2016/01/31/《工作前5年，决定你一生的财富》读书笔记/">2016-01-31</a></time>
       
       
   
-    <h1 class="title">java基础学习-《java-core》多线程</h1>
+    <h1 class="title">《工作前5年，决定你一生的财富》读书笔记</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>多线程基础知识<br><a id="more"></a></p>
-<h1 id="u4F7F_u7528_u591A_u7EBF_u7A0B"><a href="#u4F7F_u7528_u591A_u7EBF_u7A0B" class="headerlink" title="使用多线程"></a>使用多线程</h1><ol>
-<li><p>在一个单独线程中执行一个任务的简单过程</p>
-<ul>
-<li><p>将任务代码移到实现了Runnable接口的类的run方法中</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyRunnable</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		task code</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建一个类对象</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Runnable r = <span class="keyword">new</span> MyRunnable();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建一个Thread对象，并将Runnable对象作为参数传进去</p>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Thread</span> t = <span class="literal">new</span> <span class="keyword">Thread</span>(r);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>启动线程</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t.<span class="literal">start</span>();</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>补充说明</p>
-<ul>
-<li>不要调用Thread类或Runnable对象的run方法。直接调用run方法，只会执行同一个线程中的任务，而不会启动新线程。应该调用<code>Thread.start()</code>方法，这个方法将创建一个执行run方法的新线程。</li>
-<li><p>也可以构建一个Thread类的子类定义一个线程，但是不推荐了。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">Thread</span> &#123;</span></span><br><span class="line">	public void run() &#123;</span><br><span class="line">		task code</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 然后构造一个子类的对象，并调用start方法</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果有很多任务，推荐使用线程池来解决问题。</p>
-</li>
-</ul>
-</li>
-</ol>
+        <p><em>之前京东做活动，买了一堆杂七杂八的书，这是其中的一本，看了有些收获，特别是对现在的我。</em><br><a id="more"></a></p>
+<p>作者年龄估计应该要比我大那么一两岁吧，应该也是以趋近于0的概率看到我写的关于她的书的读书笔记吧，不管如何，讨论一位女士的年龄都不是一个好的话题。因为年龄相差不大，很适合我这种菜鸟理财入门，看了收获不小，姑且随便记点。</p>
+<p>关于“钱”的话题，不想多说，每个人都需要很多钱，各种原因。当然我也是，曾经只是知道钱越多越好，到了具体的金额又说不清楚。我自认为不是一个把钱看的很重的人，但是我确认很需要它，所以我又不能把它看轻了，毕竟活在这个世界里需要很多资源，而钱有时是和资源相等的。所以需要摆正一个态度，正确看待它。名与利虽如过眼云烟，但这和我们通过合法途径获取财富改善我们及身边人的生活水平并不冲突，有了一定的财富，实现自己的目标、梦想会更容易些。简单来说就是做金钱的主人，而不是被金钱控制。</p>
 
       
     </div>
@@ -115,13 +89,13 @@
         
   
   <div class="categories">
-    <a href="/categories/java/">java</a>
+    <a href="/categories/读书笔记/">读书笔记</a>
   </div>
 
         
   
   <div class="tags">
-    <a href="/tags/java/">java</a>, <a href="/tags/多线程/">多线程</a>
+    <a href="/tags/理财/">理财</a>
   </div>
 
 <!-- Baidu Button BEGIN -->
@@ -149,10 +123,10 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 
  <nav id="pagination" >
     
-    <a href="/2016/01/31/《工作前5年，决定你一生的财富》读书笔记/" class="alignleft prev" >上一页</a>
+    <a href="/2016/02/13/2016年设定的几个目标/" class="alignleft prev" >上一页</a>
     
     
-    <a href="/2016/01/26/《小狗钱钱》读后感/" class="alignright next" >下一页</a>
+    <a href="/2016/01/27/java基础学习-《java-core》多线程/" class="alignright next" >下一页</a>
     
     <div class="clearfix"></div>
 </nav>

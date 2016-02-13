@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>java基础学习-《java-core》多线程 | Ctolex&#39;s blog</title>
+  <title>2016年设定的几个目标 | Ctolex&#39;s blog</title>
   <meta name="author" content="ctolex">
   
   <meta name="description" content="记录学习、生活点滴。">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="java基础学习-《java-core》多线程"/>
+  <meta property="og:title" content="2016年设定的几个目标"/>
   <meta property="og:site_name" content="Ctolex&#39;s blog"/>
 
   
@@ -68,45 +68,41 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-01-27T01:39:26.000Z"><a href="/2016/01/27/java基础学习-《java-core》多线程/">2016-01-27</a></time>
+        <time datetime="2016-02-13T15:24:32.000Z"><a href="/2016/02/13/2016年设定的几个目标/">2016-02-13</a></time>
       
       
   
-    <h1 class="title">java基础学习-《java-core》多线程</h1>
+    <h1 class="title">2016年设定的几个目标</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>多线程基础知识<br><a id="more"></a></p>
-<h1 id="u4F7F_u7528_u591A_u7EBF_u7A0B"><a href="#u4F7F_u7528_u591A_u7EBF_u7A0B" class="headerlink" title="使用多线程"></a>使用多线程</h1><ol>
-<li><p>在一个单独线程中执行一个任务的简单过程</p>
-<ul>
-<li><p>将任务代码移到实现了Runnable接口的类的run方法中</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyRunnable</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		task code</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建一个类对象</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Runnable r = <span class="keyword">new</span> MyRunnable();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建一个Thread对象，并将Runnable对象作为参数传进去</p>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Thread</span> t = <span class="literal">new</span> <span class="keyword">Thread</span>(r);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>启动线程</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t.<span class="literal">start</span>();</span><br></pre></td></tr></table></figure>
-</li>
+        <p><em>2015都已经过去了一个半月了，无奈现在才开始规划2016年，想了半天仍然不清晰，姑且把大方向给定下，后续慢慢细化、努力完成。</em><br><a id="more"></a></p>
+<h1 id="u5DE5_u4F5C"><a href="#u5DE5_u4F5C" class="headerlink" title="工作"></a>工作</h1><ul>
+<li>基本技能夯实：看书提高</li>
+<li>工作提高效率：抓住主要矛盾，把我问题核心、本质</li>
+<li>平衡工作与生活：减少不必要的加班</li>
 </ul>
-</li>
-<li><p>补充说明</p>
-<ul>
-<li>不要调用Thread类或Runnable对象的run方法。直接调用run方法，只会执行同一个线程中的任务，而不会启动新线程。应该调用<code>Thread.start()</code>方法，这个方法将创建一个执行run方法的新线程。</li>
-<li><p>也可以构建一个Thread类的子类定义一个线程，但是不推荐了。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">Thread</span> &#123;</span></span><br><span class="line">	public void run() &#123;</span><br><span class="line">		task code</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 然后构造一个子类的对象，并调用start方法</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果有很多任务，推荐使用线程池来解决问题。</p>
-</li>
+<h1 id="u751F_u6D3B"><a href="#u751F_u6D3B" class="headerlink" title="生活"></a>生活</h1><ul>
+<li>找个好姑娘谈个奔婚姻的恋爱：主动、真诚、脸皮厚点</li>
+<li>锻炼身体：跑步、游泳</li>
+<li>定期放空自己：散步</li>
+<li>定期总结：记录</li>
 </ul>
-</li>
-</ol>
+<h1 id="u8BFB_u4E66"><a href="#u8BFB_u4E66" class="headerlink" title="读书"></a>读书</h1><ul>
+<li>掌握读书技巧：《如何阅读一本书》</li>
+<li>范围：技术、投资理财、杂书（心灵宁静、心理学、人物传记、…）</li>
+<li>数量：每周至少250p，越多越好</li>
+<li>每本书必须有个读书笔记：随感、摘录均可</li>
+</ul>
+<h1 id="u5FC3_u6001"><a href="#u5FC3_u6001" class="headerlink" title="心态"></a>心态</h1><ul>
+<li>保持乐观心态，热爱生活：助人为乐</li>
+</ul>
+<h1 id="u7406_u8D22"><a href="#u7406_u8D22" class="headerlink" title="理财"></a>理财</h1><ul>
+<li>尝试投资：股票、基金</li>
+<li>控制风险：不要贪婪</li>
+</ul>
 
       
     </div>
@@ -115,13 +111,13 @@
         
   
   <div class="categories">
-    <a href="/categories/java/">java</a>
+    <a href="/categories/随感/">随感</a>
   </div>
 
         
   
   <div class="tags">
-    <a href="/tags/java/">java</a>, <a href="/tags/多线程/">多线程</a>
+    <a href="/tags/随感/">随感</a>
   </div>
 
 <!-- Baidu Button BEGIN -->
@@ -149,10 +145,8 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 
  <nav id="pagination" >
     
-    <a href="/2016/01/31/《工作前5年，决定你一生的财富》读书笔记/" class="alignleft prev" >上一页</a>
     
-    
-    <a href="/2016/01/26/《小狗钱钱》读后感/" class="alignright next" >下一页</a>
+    <a href="/2016/01/31/《工作前5年，决定你一生的财富》读书笔记/" class="alignright next" >下一页</a>
     
     <div class="clearfix"></div>
 </nav>
