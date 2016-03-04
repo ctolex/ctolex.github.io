@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>《工作前5年，决定你一生的财富》读书笔记 | Ctolex&#39;s blog</title>
+  <title>git基本命令 | Ctolex&#39;s blog</title>
   <meta name="author" content="ctolex">
   
   <meta name="description" content="记录学习、生活点滴。">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="《工作前5年，决定你一生的财富》读书笔记"/>
+  <meta property="og:title" content="git基本命令"/>
   <meta property="og:site_name" content="Ctolex&#39;s blog"/>
 
   
@@ -68,22 +68,20 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-01-31T09:35:21.000Z"><a href="/2016/01/31/《工作前5年，决定你一生的财富》读书笔记/">2016-01-31</a></time>
+        <time datetime="2016-03-04T12:23:06.000Z"><a href="/2016/03/04/git基本命令/">2016-03-04</a></time>
       
       
   
-    <h1 class="title">《工作前5年，决定你一生的财富》读书笔记</h1>
+    <h1 class="title">git基本命令</h1>
   
 
     </header>
     <div class="entry">
       
-        <p><em>之前京东做活动，买了一堆杂七杂八的书，这是其中的一本，看了有些收获，特别是对现在的我。</em><br><a id="more"></a></p>
-<p>作者年龄估计应该要比我大那么一两岁吧，应该也是以趋近于0的概率看到我写的关于她的书的读书笔记吧，不管如何，讨论一位女士的年龄都不是一个好的话题。因为年龄相差不大，很适合我这种菜鸟理财入门，看了收获不小，姑且随便记点。</p>
-<p>关于“钱”的话题，不想多说，每个人都需要很多钱，各种原因。当然我也是，曾经只是知道钱越多越好，到了具体的金额又说不清楚。我自认为不是一个把钱看的很重的人，但是我确认很需要它，所以我又不能把它看轻了，毕竟活在这个世界里需要很多资源，而钱有时是和资源相等的。所以需要摆正一个态度，正确看待它。名与利虽如过眼云烟，但这和我们通过合法途径获取财富改善我们及身边人的生活水平并不冲突，有了一定的财富，实现自己的目标、梦想会更容易些。简单来说就是做金钱的主人，而不是被金钱控制。</p>
-<p>书中作者写了几年的理财经历，开始时赔了点，后来在股指很低的时候买了不少股票，最后5年时间资产近百万。人的经历都是不可复制的，但是作者推荐的书确是对我帮助很大。如今我也工作1年多一点了，手里有那么一点闲钱，不闻不问的话，只会越来越贬值，而且理财的技能也是一辈纸的，所以年轻时多看点这方面的书也是有作用的，也希望学点理财方面的知识，能让财富稳健地增长，为了将来能生活地更轻松些。</p>
-<p>作者推荐了许多书，我也开始看了一点。从博多·舍费尔的《小狗钱钱》、《财务自由之路》，到《巴菲特传:一个美国资本家的成长》，目前正在看作者比较推荐的《穷查理宝典》。到目前为止确实收获不小，不过大多是观念上的，看书的感觉很好，还需要加快速度以及要有自己的理解，充分吸收。</p>
-<p>作者的书给我以很大的启发，在此感谢作者，将来必定会实现财务自由。</p>
+        <p>git基本命令，供快速查看使用。<br><a id="more"></a></p>
+<h1 id="u65B0_u5EFA_u5DE5_u7A0B"><a href="#u65B0_u5EFA_u5DE5_u7A0B" class="headerlink" title="新建工程"></a>新建工程</h1><h3 id="u672C_u5730_u6CA1_u6709_u5DE5_u7A0B"><a href="#u672C_u5730_u6CA1_u6709_u5DE5_u7A0B" class="headerlink" title="本地没有工程"></a>本地没有工程</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 直接操作master分支</span></span><br><span class="line">git clone git@XXXXXXXXXXXXXXXXXXXXXX/themis<span class="class">.git</span></span><br><span class="line">cd themis</span><br><span class="line">touch README<span class="class">.md</span></span><br><span class="line">git add README<span class="class">.md</span></span><br><span class="line">git commit -m <span class="string">"add README"</span></span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// feature分支操作</span></span><br><span class="line"><span class="comment">// 1. clone代码</span></span><br><span class="line">git clone git<span class="annotation">@XXXXXXXXXXXXXXXXXXXXXX</span>/themis.git</span><br><span class="line"><span class="comment">// 2. 创建一个本地分支并跟远程的 feature/test_774347 分支关联</span></span><br><span class="line">git checkout -t origin<span class="regexp">/feature/</span>test_774347</span><br><span class="line"><span class="comment">// 3. 提交修改到本地库</span></span><br><span class="line">git commmit -m <span class="string">"xxx"</span></span><br><span class="line"><span class="comment">// 4. 将修改上传到远程库</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<h3 id="u672C_u5730_u5DF2_u6709_u5DE5_u7A0B_u4EE3_u7801"><a href="#u672C_u5730_u5DF2_u6709_u5DE5_u7A0B_u4EE3_u7801" class="headerlink" title="本地已有工程代码"></a>本地已有工程代码</h3><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. git仓库中先创建工程 themis，路径 git@<span class="label">XXXXXXXXXXXXXXXXXXXXXX/themis.git</span></span></span><br><span class="line"><span class="comment">// 2. 本地工程操作</span></span><br><span class="line">cd existing_folder</span><br><span class="line">git init</span><br><span class="line">git remote <span class="keyword">add</span> origin git@XXXXXXXXXXXXXXXXXXXXXX/themis.git</span><br><span class="line">git <span class="keyword">add</span> .</span><br><span class="line">git commit</span><br><span class="line"><span class="comment">// -u 参数会将本地分支与远程分支关联</span></span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -92,13 +90,13 @@
         
   
   <div class="categories">
-    <a href="/categories/读书笔记/">读书笔记</a>
+    <a href="/categories/代码管理/">代码管理</a>
   </div>
 
         
   
   <div class="tags">
-    <a href="/tags/理财/">理财</a>
+    <a href="/tags/git/">git</a>
   </div>
 
 <!-- Baidu Button BEGIN -->
@@ -126,10 +124,8 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 
  <nav id="pagination" >
     
-    <a href="/2016/02/13/2016年设定的几个目标/" class="alignleft prev" >上一页</a>
     
-    
-    <a href="/2016/01/27/java基础学习-《java-core》多线程/" class="alignright next" >下一页</a>
+    <a href="/2016/02/13/2016年设定的几个目标/" class="alignright next" >下一页</a>
     
     <div class="clearfix"></div>
 </nav>
