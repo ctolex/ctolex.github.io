@@ -1,0 +1,345 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Selenium使用 | Ctolex&#39;s blog</title>
+  <meta name="author" content="ctolex">
+  
+  <meta name="description" content="记录学习、生活点滴。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Selenium使用"/>
+  <meta property="og:site_name" content="Ctolex&#39;s blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="/atom.xml" title="Ctolex&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+</head>
+
+
+<body>
+  <header id="header" class="inner">
+<div class="alignleft">
+  <h1><a href="/">Ctolex&#39;s blog</a></h1>
+  <h2><a href="/">记录学习、生活点滴。</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-03-07T03:23:13.000Z"><a href="/2016/03/07/Selenium使用/">2016-03-07</a></time>
+      
+      
+  
+    <h1 class="title">Selenium使用</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>selenium简单入门及注意点，内容多来自官网document的翻译<br><a id="more"></a></p>
+<h1 id="u7B80_u4ECB"><a href="#u7B80_u4ECB" class="headerlink" title="简介"></a>简介</h1><p><a href="http://docs.seleniumhq.org/" target="_blank" rel="external">selenium官方网站</a></p>
+<p>Selenium automates browsers. That’s it! 简单来说就是使浏览器可以自动运行的工具，用于web应用程序ui的自动化测试比较多。</p>
+<ol>
+<li>Selenium 2.0 ≈ Selenium 1.x(Selenium-RC) + WebDriver</li>
+<li>Selenium-RC 浏览器启动后，采用注入js的方式驱动浏览器运行：对所有浏览器采用相同的方式。</li>
+<li>WebDriver 通过浏览器对自动化的原生支持，直接调用浏览器：不同浏览器有不同的特性，采用不同的驱动方式。</li>
+<li><p>Selenium目前工程有4个，分别为 Selenium WebDriver、Selenium Grid、Selenium IDE、Selenium Remote Control（Selenium RC）</p>
+ <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Selenium </span>WebDriver: 可以在本地或远程机器上原生地驱动一个浏览器</span><br><span class="line"><span class="keyword">Selenium </span>Grid: 同时在多台机器、多个浏览器上运行测试用例，削减测试时间</span><br><span class="line"><span class="keyword">Selenium </span>IDE: 录制和回放测试用例，作为Firefox extension执行</span><br><span class="line"><span class="keyword">Selenium </span>Remote Control：C/S系统，控制本地或远程浏览器</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="u51C6_u5907"><a href="#u51C6_u5907" class="headerlink" title="准备"></a>准备</h1><p><em>基于java maven工程测试</em></p>
+<h3 id="pom_u4F9D_u8D56"><a href="#pom_u4F9D_u8D56" class="headerlink" title="pom依赖"></a>pom依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.seleniumhq.selenium<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>selenium-java<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">version</span>&gt;</span>2.52.0<span class="tag">&lt;/<span class="title">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="browser_u9A71_u52A8"><a href="#browser_u9A71_u52A8" class="headerlink" title="browser驱动"></a>browser驱动</h3><p>Chrome浏览器 +  <a href="https://sites.google.com/a/chromium.org/chromedriver/" target="_blank" rel="external">chrome driver</a> （下载后加入path后不需额外配置，否则需要配置路径）<br>Firefox浏览器（驱动内置支持）</p>
+<h1 id="u57FA_u7840"><a href="#u57FA_u7840" class="headerlink" title="基础"></a>基础</h1><h2 id="u5B9E_u4F8B"><a href="#u5B9E_u4F8B" class="headerlink" title="实例"></a>实例</h2><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</span><br><span class="line">       <span class="comment">// Create a new instance of the Firefox driver</span></span><br><span class="line">       WebDriver driver = <span class="keyword">new</span> FirefoxDriver();</span><br><span class="line">       <span class="comment">// And now use this to visit Google</span></span><br><span class="line">       driver.<span class="keyword">get</span>(<span class="string">"http://www.google.com"</span>);</span><br><span class="line"></span><br><span class="line">       <span class="comment">// Find the text input element by its name</span></span><br><span class="line">       WebElement element = driver.findElement(By.name(<span class="string">"q"</span>));</span><br><span class="line">       <span class="comment">// Enter something to search for</span></span><br><span class="line">       element.sendKeys(<span class="string">"Cheese!"</span>);</span><br><span class="line">       <span class="comment">// Now submit the form. WebDriver will find the form for us from the element</span></span><br><span class="line">       element.submit();</span><br><span class="line"> </span><br><span class="line">       <span class="comment">// Google's search is rendered dynamically with JavaScript.</span></span><br><span class="line">       <span class="comment">// Wait for the page to load, timeout after 10 seconds</span></span><br><span class="line">       (<span class="keyword">new</span> WebDriverWait(driver, <span class="number">10</span>)).until(<span class="keyword">new</span> ExpectedCondition&lt;Boolean&gt;() &#123;</span><br><span class="line">           <span class="function"><span class="keyword">public</span> Boolean <span class="title">apply</span>(<span class="params">WebDriver d</span>) </span>&#123;</span><br><span class="line">               <span class="keyword">return</span> d.getTitle().toLowerCase().startsWith(<span class="string">"cheese!"</span>);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;);</span><br><span class="line">       <span class="comment">// Should see: "cheese! - Google Search"</span></span><br><span class="line">       System.<span class="keyword">out</span>.println(<span class="string">"Page title is: "</span> + driver.getTitle());</span><br><span class="line">       </span><br><span class="line">       <span class="comment">//Close the browser</span></span><br><span class="line">       driver.quit();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="u5B9A_u4F4D_u5143_u7D20"><a href="#u5B9A_u4F4D_u5143_u7D20" class="headerlink" title="定位元素"></a>定位元素</h2><table>
+<thead>
+<tr>
+<th>查找方式</th>
+<th>描述</th>
+<th>举例 (Java) </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>By.id</td>
+<td>以元素的 id 属性来定位页面元素</td>
+<td>By.id(“username”)</td>
+</tr>
+<tr>
+<td>By.className</td>
+<td>以元素的 class 属性来定位页面元素</td>
+<td>By.className(“even-table-row”)</td>
+</tr>
+<tr>
+<td>By.cssSelector</td>
+<td>基于 CSS 选择器定位页面元素</td>
+<td>By.cssSelector(“#username”)</td>
+</tr>
+<tr>
+<td>By.TagName</td>
+<td>以元素的标签名称定位页面元素</td>
+<td>By.tagName(“td”)</td>
+</tr>
+<tr>
+<td>By.name</td>
+<td>以元素的 name 属性来定位页面元素</td>
+<td>By.name(“username”)</td>
+</tr>
+<tr>
+<td>By.LinkText</td>
+<td>查找包含链接显示文案的页面元素</td>
+<td>By.linkText(“Click Me!”)</td>
+</tr>
+<tr>
+<td>By.xpath</td>
+<td>以 XPath 来定位页面元素</td>
+<td>By.xpath(“//*[@id=”username”])</td>
+</tr>
+</tbody>
+</table>
+<h3 id="By_ID"><a href="#By_ID" class="headerlink" title="By ID"></a>By ID</h3><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 页面代码</span></span><br><span class="line">&lt;<span class="keyword">div</span> id=<span class="string">"coolestWidgetEvah"</span>&gt;...&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line"><span class="comment">// java代码</span></span><br><span class="line">WebElement element = driver.findElement(By.id(<span class="string">"coolestWidgetEvah"</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="By_Class_Name"><a href="#By_Class_Name" class="headerlink" title="By Class Name"></a>By Class Name</h3><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 页面代码</span></span><br><span class="line">&lt;<span class="keyword">div</span> <span class="keyword">class</span>=<span class="string">"cheese"</span>&gt;&lt;span&gt;Cheddar&lt;<span class="regexp">/span&gt;&lt;/</span><span class="keyword">div</span>&gt;&lt;<span class="keyword">div</span> <span class="keyword">class</span>=<span class="string">"cheese"</span>&gt;&lt;span&gt;Gouda&lt;<span class="regexp">/span&gt;&lt;/</span><span class="keyword">div</span>&gt;</span><br><span class="line"><span class="comment">// java代码</span></span><br><span class="line">List&lt;WebElement&gt; cheeses = driver.findElements(By.className(<span class="string">"cheese"</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="By_Tag_Name"><a href="#By_Tag_Name" class="headerlink" title="By Tag Name"></a>By Tag Name</h3><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 页面代码</span></span><br><span class="line">&lt;iframe src=<span class="string">"..."</span>&gt;&lt;/iframe&gt;</span><br><span class="line"><span class="comment">// java代码</span></span><br><span class="line">WebElement frame = driver<span class="built_in">.</span>findElement(<span class="keyword">By</span><span class="built_in">.</span>tagName(<span class="string">"iframe"</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="By_Name"><a href="#By_Name" class="headerlink" title="By Name"></a>By Name</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 页面代码</span></span><br><span class="line">&lt;<span class="keyword">input</span> name=<span class="string">"cheese"</span> <span class="keyword">type</span>=<span class="string">"text"</span>/&gt;</span><br><span class="line"><span class="comment">// java代码</span></span><br><span class="line">WebElement cheese = driver.findElement(<span class="keyword">By</span>.name(<span class="string">"cheese"</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="By_Link_Text"><a href="#By_Link_Text" class="headerlink" title="By Link Text"></a>By Link Text</h3><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 页面代码</span></span><br><span class="line">&lt;a href=<span class="string">"http://www.google.com/search?q=cheese"</span>&gt;cheese&lt;/a&gt;&gt;</span><br><span class="line"><span class="comment">// java代码</span></span><br><span class="line">WebElement cheese = driver<span class="built_in">.</span>findElement(<span class="keyword">By</span><span class="built_in">.</span>linkText(<span class="string">"cheese"</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="By_CSS"><a href="#By_CSS" class="headerlink" title="By CSS"></a>By CSS</h3><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 页面代码</span></span><br><span class="line">&lt;div id=<span class="string">"food"</span>&gt;&lt;span <span class="keyword">class</span>=<span class="string">"dairy"</span>&gt;milk&lt;/span&gt;&lt;span <span class="keyword">class</span>=<span class="string">"dairy aged"</span>&gt;cheese&lt;/span&gt;&lt;/div&gt;</span><br><span class="line"><span class="comment">// java代码</span></span><br><span class="line"><span class="comment">// 注意,当class为多个字符串空格组合时，不能使用By.className, 可以使用By.cssSelector,并且class name中的空格要换成 '.'</span></span><br><span class="line">WebElement cheese = driver.findElement(By.cssSelector(<span class="string">"#food span.dairy.aged"</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="By_XPATH"><a href="#By_XPATH" class="headerlink" title="By XPATH"></a>By XPATH</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 页面代码</span></span><br><span class="line">&lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"text"</span> name=<span class="string">"example"</span>/&gt;</span><br><span class="line"><span class="comment">// java代码</span></span><br><span class="line"><span class="keyword">List</span>&lt;WebElement&gt; inputs = driver.findElements(<span class="keyword">By</span>.xpath(<span class="string">"//input"</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="Using_JavaScript"><a href="#Using_JavaScript" class="headerlink" title="Using JavaScript"></a>Using JavaScript</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WebElement element = (WebElement) ((JavascriptExecutor)driver).executeScript(<span class="string">"return <span class="variable">$('.cheese')</span>[0]"</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="u7A97_u53E3_u3001Frame_uFF08iFrame_uFF09_u5207_u6362"><a href="#u7A97_u53E3_u3001Frame_uFF08iFrame_uFF09_u5207_u6362" class="headerlink" title="窗口、Frame（iFrame）切换"></a>窗口、Frame（iFrame）切换</h2><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 切换到指定窗口</span></span><br><span class="line">driver.switchTo().<span class="built_in">window</span>(<span class="string">"windowName"</span>);</span><br><span class="line"><span class="comment">// 遍历窗口</span></span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">String</span> handle : driver.getWindowHandles()) &#123;</span><br><span class="line">    driver.switchTo().<span class="built_in">window</span>(handle);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 切换到 iFrame</span></span><br><span class="line">driver.switchTo().frame(<span class="string">"frameName"</span>);</span><br><span class="line"><span class="comment">// 从iFrame切换回来</span></span><br><span class="line">driver.switchTo().defaultContent();</span><br></pre></td></tr></table></figure>
+<h2 id="u5BF9_u8BDD_u6846"><a href="#u5BF9_u8BDD_u6846" class="headerlink" title="对话框"></a>对话框</h2><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 却换到对话框</span></span><br><span class="line">Alert alert = driver.switchTo<span class="comment">()</span>.alert<span class="comment">()</span>;</span><br><span class="line"><span class="comment">// 确认</span></span><br><span class="line">alert.accept<span class="comment">()</span>;</span><br><span class="line"><span class="comment">// 取消</span></span><br><span class="line">alert.dismiss<span class="comment">()</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="u524D_u8FDB_u3001_u540E_u9000"><a href="#u524D_u8FDB_u3001_u540E_u9000" class="headerlink" title="前进、后退"></a>前进、后退</h2><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">driver</span>.navigate().forward(); <span class="comment">// 前进</span></span><br><span class="line"><span class="built_in">driver</span>.navigate().back();  <span class="comment">// 后退</span></span><br></pre></td></tr></table></figure>
+<h2 id="u663E_u793A_u3001_u9690_u5F0F_u7B49_u5F85_uFF08WebDriverWait_uFF09"><a href="#u663E_u793A_u3001_u9690_u5F0F_u7B49_u5F85_uFF08WebDriverWait_uFF09" class="headerlink" title="显示、隐式等待（WebDriverWait）"></a>显示、隐式等待（WebDriverWait）</h2><p>页面元素有时加载较慢，无法立即获取到，需要等待一段时间，可以使用WebDriverWait，分显示和隐式两种方式。</p>
+<p>注：官网建议不要混合使用显示和隐式这两种方式，否则等待时间可能比较奇怪。</p>
+<h3 id="u663E_u793A_u7B49_u5F85"><a href="#u663E_u793A_u7B49_u5F85" class="headerlink" title="显示等待"></a>显示等待</h3><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">WebDriver driver = <span class="keyword">new</span> FirefoxDriver();</span><br><span class="line">driver.<span class="keyword">get</span>(<span class="string">"http://somedomain/url_that_delays_loading"</span>);</span><br><span class="line">WebDriverWait wait = <span class="keyword">new</span> WebDriverWait(driver, <span class="number">10</span>);</span><br><span class="line">WebElement myDynamicElement = wait.<span class="keyword">until</span>(ExpectedConditions.presenceOfElementLocated(<span class="keyword">By</span>.id(<span class="string">"myDynamicElement"</span>)));</span><br></pre></td></tr></table></figure>
+<ul>
+<li>等待10s超时，超时没有找到指定元素就抛出 TimeoutException</li>
+<li>WebDriverWait默认 500ms 调用ExpectedConditions的方法一次，直到找到元素或超时。</li>
+</ul>
+<h3 id="u9690_u5F0F_u7B49_u5F85"><a href="#u9690_u5F0F_u7B49_u5F85" class="headerlink" title="隐式等待"></a>隐式等待</h3><figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">WebDriver</span> driver = new <span class="type">FirefoxDriver</span><span class="literal">()</span>;</span><br><span class="line">driver.manage<span class="literal">()</span>.timeouts<span class="literal">()</span>.implicitlyWait(<span class="number">10</span>, <span class="type">TimeUnit</span>.<span class="type">SECONDS</span>);</span><br><span class="line">driver.get(<span class="string">"http://somedomain/url_that_delays_loading"</span>);</span><br><span class="line"><span class="type">WebElement</span> myDynamicElement = driver.findElement(<span class="type">By</span>.id(<span class="string">"myDynamicElement"</span>));</span><br></pre></td></tr></table></figure>
+<ul>
+<li>默认是等待0s</li>
+<li>一旦设置后，WebDriver的整个生命周期都有效</li>
+</ul>
+<h2 id="Actions"><a href="#Actions" class="headerlink" title="Actions"></a>Actions</h2><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 元素的拖拽</span></span><br><span class="line">WebElement element = <span class="built_in">driver</span>.findElement(By.<span class="built_in">name</span>(<span class="string">"source"</span>));</span><br><span class="line">WebElement target = <span class="built_in">driver</span>.findElement(By.<span class="built_in">name</span>(<span class="string">"target"</span>));</span><br><span class="line">(new Actions(<span class="built_in">driver</span>)).dragAndDrop(element, target).perform();</span><br><span class="line"></span><br><span class="line"><span class="comment">// moveto and click</span></span><br><span class="line">Actions <span class="built_in">action</span> = new Actions(<span class="built_in">driver</span>.getDelegate());</span><br><span class="line"><span class="built_in">action</span>.moveToElement(t).moveToElement(t.findElement(By.<span class="built_in">className</span>(<span class="string">"btn-select"</span>))).click().build().perform();</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/自动化测试/">自动化测试</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/selenium/">selenium</a>
+  </div>
+
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3326447" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    
+    <a href="/2016/03/04/git基本命令/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+
+
+<section id="comment">
+
+<!-- 多说评论框 start -->
+<!--	<div class="ds-thread" data-thread-key="请将此处替换成文章在你的站点中的ID" data-title="请替换成文章的标题" data-url="请替换成文章的网址"></div> -->
+        <div class="ds-thread"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"ctolex"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:ctolex.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/java/">java</a><small>5</small></li>
+  
+    <li><a href="/categories/javascript/">javascript</a><small>1</small></li>
+  
+    <li><a href="/categories/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/categories/代码管理/">代码管理</a><small>1</small></li>
+  
+    <li><a href="/categories/自动化测试/">自动化测试</a><small>1</small></li>
+  
+    <li><a href="/categories/观后感/">观后感</a><small>1</small></li>
+  
+    <li><a href="/categories/读书笔记/">读书笔记</a><small>1</small></li>
+  
+    <li><a href="/categories/读后感/">读后感</a><small>1</small></li>
+  
+    <li><a href="/categories/随感/">随感</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>本名：周涛</li>
+<li>花名：楚韬（ctolex）</li>
+<li>职业：程序员</li>
+<li>Theme copy from <a href="https://github.com/zippera/lightum">Lightum</a>
+</ul>
+</div>
+
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><section>
+Theme of <a href="https://github.com/zippera/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/ctolex" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/image/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>
