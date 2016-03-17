@@ -159,7 +159,7 @@
 </ul>
 <h3 id="u9690_u5F0F_u7B49_u5F85"><a href="#u9690_u5F0F_u7B49_u5F85" class="headerlink" title="隐式等待"></a>隐式等待</h3><figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">WebDriver</span> driver = new <span class="type">FirefoxDriver</span><span class="literal">()</span>;</span><br><span class="line">driver.manage<span class="literal">()</span>.timeouts<span class="literal">()</span>.implicitlyWait(<span class="number">10</span>, <span class="type">TimeUnit</span>.<span class="type">SECONDS</span>);</span><br><span class="line">driver.get(<span class="string">"http://somedomain/url_that_delays_loading"</span>);</span><br><span class="line"><span class="type">WebElement</span> myDynamicElement = driver.findElement(<span class="type">By</span>.id(<span class="string">"myDynamicElement"</span>));</span><br></pre></td></tr></table></figure>
 <ul>
-<li>默认是等待0s</li>
+<li>默认是等待0s,即不等待</li>
 <li>一旦设置后，WebDriver的整个生命周期都有效</li>
 </ul>
 <h2 id="Actions"><a href="#Actions" class="headerlink" title="Actions"></a>Actions</h2><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 元素的拖拽</span></span><br><span class="line">WebElement element = <span class="built_in">driver</span>.findElement(By.<span class="built_in">name</span>(<span class="string">"source"</span>));</span><br><span class="line">WebElement target = <span class="built_in">driver</span>.findElement(By.<span class="built_in">name</span>(<span class="string">"target"</span>));</span><br><span class="line">(new Actions(<span class="built_in">driver</span>)).dragAndDrop(element, target).perform();</span><br><span class="line"></span><br><span class="line"><span class="comment">// moveto and click</span></span><br><span class="line">Actions <span class="built_in">action</span> = new Actions(<span class="built_in">driver</span>.getDelegate());</span><br><span class="line"><span class="built_in">action</span>.moveToElement(t).moveToElement(t.findElement(By.<span class="built_in">className</span>(<span class="string">"btn-select"</span>))).click().build().perform();</span><br></pre></td></tr></table></figure>
@@ -204,6 +204,8 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 
 
  <nav id="pagination" >
+    
+    <a href="/2016/03/09/一个J2EE异常处理框架（译）/" class="alignleft prev" >上一页</a>
     
     
     <a href="/2016/03/04/git基本命令/" class="alignright next" >下一页</a>
@@ -251,7 +253,7 @@ var duoshuoQuery = {short_name:"ctolex"};
   <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/categories/java/">java</a><small>5</small></li>
+    <li><a href="/categories/java/">java</a><small>6</small></li>
   
     <li><a href="/categories/javascript/">javascript</a><small>1</small></li>
   
