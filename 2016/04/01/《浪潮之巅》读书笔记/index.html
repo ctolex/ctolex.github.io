@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>git基本命令 | Ctolex&#39;s blog</title>
+  <title>《浪潮之巅》读书笔记 | Ctolex&#39;s blog</title>
   <meta name="author" content="ctolex">
   
   <meta name="description" content="记录学习、生活点滴。">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="git基本命令"/>
+  <meta property="og:title" content="《浪潮之巅》读书笔记"/>
   <meta property="og:site_name" content="Ctolex&#39;s blog"/>
 
   
@@ -68,20 +68,28 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-03-04T12:23:06.000Z"><a href="/2016/03/04/git基本命令/">2016-03-04</a></time>
+        <time datetime="2016-04-01T06:15:19.000Z"><a href="/2016/04/01/《浪潮之巅》读书笔记/">2016-04-01</a></time>
       
       
   
-    <h1 class="title">git基本命令</h1>
+    <h1 class="title">《浪潮之巅》读书笔记</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>git基本命令，供快速查看使用。<br><a id="more"></a></p>
-<h1 id="u65B0_u5EFA_u5DE5_u7A0B"><a href="#u65B0_u5EFA_u5DE5_u7A0B" class="headerlink" title="新建工程"></a>新建工程</h1><h3 id="u672C_u5730_u6CA1_u6709_u5DE5_u7A0B"><a href="#u672C_u5730_u6CA1_u6709_u5DE5_u7A0B" class="headerlink" title="本地没有工程"></a>本地没有工程</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 直接操作master分支</span></span><br><span class="line">git clone git@XXXXXXXXXXXXXXXXXXXXXX/themis<span class="class">.git</span></span><br><span class="line">cd themis</span><br><span class="line">touch README<span class="class">.md</span></span><br><span class="line">git add README<span class="class">.md</span></span><br><span class="line">git commit -m <span class="string">"add README"</span></span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// feature分支操作</span></span><br><span class="line"><span class="comment">// 1. clone代码</span></span><br><span class="line">git clone git<span class="annotation">@XXXXXXXXXXXXXXXXXXXXXX</span>/themis.git</span><br><span class="line"><span class="comment">// 2. 创建一个本地分支并跟远程的 feature/test_774347 分支关联</span></span><br><span class="line">git checkout -t origin<span class="regexp">/feature/</span>test_774347</span><br><span class="line"><span class="comment">// 3. 提交修改到本地库</span></span><br><span class="line">git commmit -m <span class="string">"xxx"</span></span><br><span class="line"><span class="comment">// 4. 将修改上传到远程库</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
-<h3 id="u672C_u5730_u5DF2_u6709_u5DE5_u7A0B_u4EE3_u7801"><a href="#u672C_u5730_u5DF2_u6709_u5DE5_u7A0B_u4EE3_u7801" class="headerlink" title="本地已有工程代码"></a>本地已有工程代码</h3><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. git仓库中先创建工程 themis，路径 git@<span class="label">XXXXXXXXXXXXXXXXXXXXXX/themis.git</span></span></span><br><span class="line"><span class="comment">// 2. 本地工程操作</span></span><br><span class="line">cd existing_folder</span><br><span class="line">git init</span><br><span class="line">git remote <span class="keyword">add</span> origin git@XXXXXXXXXXXXXXXXXXXXXX/themis.git</span><br><span class="line">git <span class="keyword">add</span> .</span><br><span class="line">git commit</span><br><span class="line"><span class="comment">// -u 参数会将本地分支与远程分支关联</span></span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+        <p>作者吴军，摘录部分内容。<br><a id="more"></a></p>
+<ul>
+<li>美国法律同时规定所有的慈善基金会每年必须捐出5%的财产，这就是每年盖茨基金会会捐出一些钱的原因。</li>
+<li>凡是现实的都是合理的，凡是合理的都是现实的。(All that is real is rational; and all that is rational is real.)虽然这句话常常被误解成为当今不合理的现实来开脱，其实，如果我们动态地看待现实性和合理性，可以把这句话理解成，现在存在的现象，当初产生它的时候必然有产生它的原因和理由。如果这个理由将来不存在了，终究有一天它也会消亡。</li>
+<li>菲奥莉娜离职的当天，惠普的股票大涨了 10% 。这是一次惨痛的教训，它说明如果一个公司不能挑选好掌舵人，以后替换掉他成本也是很高的。</li>
+<li>如果当初摩托罗拉的领袖是盖茨或者通用电气的韦尔奇，它也许就不会是今天这个结局了。我在前面多次强调公司领导人对公司发展的重要性，摩托罗拉的兴衰就是一个很好的例子。</li>
+<li>对于创始人，红杉风投也有一些基本要求： 　　1.思路开阔，脑瓜灵活，能证明自己比对手强。 　　2.公司和创始人的基因要好。当然这里不是指生物基因。红杉风投认为，一个公司的基因在成立的三个月中形成，优秀创始人才能吸引优秀的团队，优秀的团队才能奠定好的公司的基础。 　　3.动作快，因为只有这样才有可能打败现有的大公司。刚刚创办的小公司和跨国公司竞争无异于婴儿和巨人交战，要想赢必须快速灵活。</li>
+<li>一个公司的基因并不向人的基因那样（在显微镜下）看得见摸得着。它是一个公司在市场竞争中进化出来的适应该市场的企业文化（做事方式）、管理方法、产品市场定位、商业模式和营销方式等等。一个公司在早期，一切还是一张白纸的时候，其基因还有改变的可能。红杉风投认为一个公司的基因在创办的一个月内就定型了，这也许有些夸张，但是一个成型的公司改变基因的可能却是非常小。越是以前成功的公司越是容易相信自己固有的基因是最优秀的。</li>
+<li>在办学理念上，斯坦福集哈佛大学和麻省理工学院之长于一身。斯坦福既强调素质教育，又强调专业教育。事实证明，全面发展有助于斯坦福大学培养出全才，而全才是作为业界领袖的必要条件</li>
+<li>1999 年，在美国上市成风的高潮年代，作为私营公司长达百年的高盛自己也上市了（历史证明，当一些根本不需要资金的、长期私有的大公司也通过上市捞一笔钱时，股市就到了几年顶部）</li>
+<li>在所有商业模式中，最理想的就是能像印钞机那样自动挣钱的模式。我们在这一章中介绍三个成功的模式，Google 的广告系统，Ebay 的电子商务系统和戴尔的微机直销系统。</li>
+</ul>
 
       
     </div>
@@ -90,13 +98,13 @@
         
   
   <div class="categories">
-    <a href="/categories/代码管理/">代码管理</a>
+    <a href="/categories/读书笔记/">读书笔记</a>
   </div>
 
         
   
   <div class="tags">
-    <a href="/tags/git/">git</a>
+    <a href="/tags/读书笔记/">读书笔记</a>
   </div>
 
 <!-- Baidu Button BEGIN -->
@@ -124,10 +132,10 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 
  <nav id="pagination" >
     
-    <a href="/2016/03/07/Selenium使用/" class="alignleft prev" >上一页</a>
+    <a href="/2016/04/15/Sublime-Text常用操作/" class="alignleft prev" >上一页</a>
     
     
-    <a href="/2016/02/13/2016年设定的几个目标/" class="alignright next" >下一页</a>
+    <a href="/2016/03/30/《一个美国资本家的成长-世界首富沃伦·巴菲特传》读书笔记/" class="alignright next" >下一页</a>
     
     <div class="clearfix"></div>
 </nav>

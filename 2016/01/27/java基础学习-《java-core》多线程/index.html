@@ -79,7 +79,7 @@
     <div class="entry">
       
         <p>多线程基础知识<br><a id="more"></a></p>
-<h1 id="u4F7F_u7528_u591A_u7EBF_u7A0B"><a href="#u4F7F_u7528_u591A_u7EBF_u7A0B" class="headerlink" title="使用多线程"></a>使用多线程</h1><ol>
+<h1 id="u7B80_u5355_u4F7F_u7528_u591A_u7EBF_u7A0B"><a href="#u7B80_u5355_u4F7F_u7528_u591A_u7EBF_u7A0B" class="headerlink" title="简单使用多线程"></a>简单使用多线程</h1><ol>
 <li><p>在一个单独线程中执行一个任务的简单过程</p>
 <ul>
 <li><p>将任务代码移到实现了Runnable接口的类的run方法中</p>
@@ -98,15 +98,49 @@
 </li>
 <li><p>补充说明</p>
 <ul>
-<li>不要调用Thread类或Runnable对象的run方法。直接调用run方法，只会执行同一个线程中的任务，而不会启动新线程。应该调用<code>Thread.start()</code>方法，这个方法将创建一个执行run方法的新线程。</li>
+<li>不要调用Thread类或Runnable对象的run方法。直接调用run方法，只会在同一个线程（当前线程）中执行任务，而不会启动新线程。应该调用<code>Thread.start()</code>方法，这个方法将创建一个执行run方法的新线程。</li>
 <li><p>也可以构建一个Thread类的子类定义一个线程，但是不推荐了。</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">Thread</span> &#123;</span></span><br><span class="line">	public void run() &#123;</span><br><span class="line">		task code</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 然后构造一个子类的对象，并调用start方法</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>如果有很多任务，推荐使用线程池来解决问题。</p>
 </li>
+<li><code>Thread.currentThread()</code> 返回当前执行线程的Thread对象。</li>
 </ul>
 </li>
 </ol>
+<h1 id="u4E2D_u65AD_u7EBF_u7A0B"><a href="#u4E2D_u65AD_u7EBF_u7A0B" class="headerlink" title="中断线程"></a>中断线程</h1><ol>
+<li><p>中断一个线程<code>interrupt</code>方法 </p>
+ <figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MyRunnable myRunnable = <span class="literal">new</span> MyRunnable();</span><br><span class="line"><span class="keyword">Thread</span> <span class="keyword">thread</span> = <span class="literal">new</span> <span class="keyword">Thread</span>(myRunnable);</span><br><span class="line"><span class="keyword">thread</span><span class="built_in">.</span>start();</span><br><span class="line">、、、</span><br><span class="line"><span class="keyword">thread</span><span class="built_in">.</span>interrupt();</span><br></pre></td></tr></table></figure>
+<p> 向线程发送中断请求，线程的中断状态将被设置为true。测试发现，如果<code>被中断</code>的线程正在sleep，则sleep被打断，继续执行。</p>
+</li>
+<li><p>判断线程是否被中断 <code>isInterupted</code>方法</p>
+  <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Thread.<span class="function"><span class="title">currentThread</span><span class="params">()</span></span>.<span class="function"><span class="title">isInterrupted</span><span class="params">()</span></span> <span class="comment">// 返回boolean值</span></span><br></pre></td></tr></table></figure>
+<p>  测试线程是否被中止，不改变线程的中断状态。</p>
+</li>
+<li><p>判断线程是否被中断 <code>static boolean interrupted()</code> 静态方法</p>
+  <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Thread.<span class="function"><span class="title">interrupted</span><span class="params">()</span></span> <span class="comment">// 返回boolean值</span></span><br></pre></td></tr></table></figure>
+<p>  测试线程是否被中止，改变线程的中断状态，将线程中断状态重置为false。</p>
+</li>
+</ol>
+<h1 id="u7EBF_u7A0B_u72B6_u6001"><a href="#u7EBF_u7A0B_u72B6_u6001" class="headerlink" title="线程状态"></a>线程状态</h1><p>线程有以下6种状态：</p>
+<ul>
+<li>NEW (新创建)</li>
+<li>RUNNABLE (可运行)</li>
+<li>BLOCKED (被阻塞)</li>
+<li>WAITING (等待)</li>
+<li>TIMED_WAITING (计时等待)</li>
+<li>TERMINATED (被终止)</li>
+</ul>
+<h3 id="NEW__28_u65B0_u521B_u5EFA_29"><a href="#NEW__28_u65B0_u521B_u5EFA_29" class="headerlink" title="NEW (新创建)"></a>NEW (新创建)</h3><p>new操作符新创建，还未start。</p>
+<h3 id="RUNNABLE__28_u53EF_u8FD0_u884C_29"><a href="#RUNNABLE__28_u53EF_u8FD0_u884C_29" class="headerlink" title="RUNNABLE (可运行)"></a>RUNNABLE (可运行)</h3><p>调用了start方法后，线程处于 <code>RUNNABLE</code> 状态，需要注意的是：一个可运行的线程可能正在运行也可能没有运行，这取决于操作系统给线程提供运行的时间（时间片）。 </p>
+<h3 id="BLOCKED__28_u88AB_u963B_u585E_29"><a href="#BLOCKED__28_u88AB_u963B_u585E_29" class="headerlink" title="BLOCKED (被阻塞)"></a>BLOCKED (被阻塞)</h3><p>当线程视图获取一个内部的对象锁，而该锁被其他线程持有，则该线程进入阻塞状态。</p>
+<h3 id="WAITING__28_u7B49_u5F85_29"><a href="#WAITING__28_u7B49_u5F85_29" class="headerlink" title="WAITING (等待)"></a>WAITING (等待)</h3><p>当线程等待另一个线程通知调度器一个条件时，他自己进入等待状态。</p>
+<h3 id="TIMED_WAITING__28_u8BA1_u65F6_u7B49_u5F85_29"><a href="#TIMED_WAITING__28_u8BA1_u65F6_u7B49_u5F85_29" class="headerlink" title="TIMED_WAITING (计时等待)"></a>TIMED_WAITING (计时等待)</h3><p>线程调用几个带有超时参数的方法时进入<code>计时等待</code>状态,这一状态一直保持到超时期满或者接收到适当的通知。 几个带超时参数的方法有 <code>Thread.sleep、Object.wait、Thread.join、Lock.tryLock ...</code>.</p>
+<h3 id="TERMINATED__28_u88AB_u7EC8_u6B62_29"><a href="#TERMINATED__28_u88AB_u7EC8_u6B62_29" class="headerlink" title="TERMINATED (被终止)"></a>TERMINATED (被终止)</h3><p>终止原因通常有两个：</p>
+<ul>
+<li>run方法退出而自然死亡</li>
+<li>因抛出异常而终止run方法</li>
+</ul>
 
       
     </div>
@@ -205,11 +239,13 @@ var duoshuoQuery = {short_name:"ctolex"};
   
     <li><a href="/categories/代码管理/">代码管理</a><small>1</small></li>
   
+    <li><a href="/categories/工具/">工具</a><small>1</small></li>
+  
     <li><a href="/categories/自动化测试/">自动化测试</a><small>1</small></li>
   
     <li><a href="/categories/观后感/">观后感</a><small>1</small></li>
   
-    <li><a href="/categories/读书笔记/">读书笔记</a><small>4</small></li>
+    <li><a href="/categories/读书笔记/">读书笔记</a><small>5</small></li>
   
     <li><a href="/categories/随感/">随感</a><small>1</small></li>
   
