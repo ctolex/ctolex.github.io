@@ -82,7 +82,8 @@
 <h1 id="u65B0_u5EFA_u5DE5_u7A0B"><a href="#u65B0_u5EFA_u5DE5_u7A0B" class="headerlink" title="新建工程"></a>新建工程</h1><h3 id="u672C_u5730_u6CA1_u6709_u5DE5_u7A0B"><a href="#u672C_u5730_u6CA1_u6709_u5DE5_u7A0B" class="headerlink" title="本地没有工程"></a>本地没有工程</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 直接操作master分支</span></span><br><span class="line">git clone git@XXXXXXXXXXXXXXXXXXXXXX/themis<span class="class">.git</span></span><br><span class="line">cd themis</span><br><span class="line">touch README<span class="class">.md</span></span><br><span class="line">git add README<span class="class">.md</span></span><br><span class="line">git commit -m <span class="string">"add README"</span></span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// feature分支操作</span></span><br><span class="line"><span class="comment">// 1. clone代码</span></span><br><span class="line">git clone git<span class="annotation">@XXXXXXXXXXXXXXXXXXXXXX</span>/themis.git</span><br><span class="line"><span class="comment">// 2. 创建一个本地分支并跟远程的 feature/test_774347 分支关联</span></span><br><span class="line">git checkout -t origin<span class="regexp">/feature/</span>test_774347</span><br><span class="line"><span class="comment">// 3. 提交修改到本地库</span></span><br><span class="line">git commmit -m <span class="string">"xxx"</span></span><br><span class="line"><span class="comment">// 4. 将修改上传到远程库</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
 <h3 id="u672C_u5730_u5DF2_u6709_u5DE5_u7A0B_u4EE3_u7801"><a href="#u672C_u5730_u5DF2_u6709_u5DE5_u7A0B_u4EE3_u7801" class="headerlink" title="本地已有工程代码"></a>本地已有工程代码</h3><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. git仓库中先创建工程 themis，路径 git@<span class="label">XXXXXXXXXXXXXXXXXXXXXX/themis.git</span></span></span><br><span class="line"><span class="comment">// 2. 本地工程操作</span></span><br><span class="line">cd existing_folder</span><br><span class="line">git init</span><br><span class="line">git remote <span class="keyword">add</span> origin git@XXXXXXXXXXXXXXXXXXXXXX/themis.git</span><br><span class="line">git <span class="keyword">add</span> .</span><br><span class="line">git commit</span><br><span class="line"><span class="comment">// -u 参数会将本地分支与远程分支关联</span></span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
-
+<h1 id="u5206_u652F_u5173_u8054"><a href="#u5206_u652F_u5173_u8054" class="headerlink" title="分支关联"></a>分支关联</h1><h3 id="u672C_u5730_u5206_u652F_u4E0E_u8FDC_u7A0B_u5206_u652F_u5173_u8054"><a href="#u672C_u5730_u5206_u652F_u4E0E_u8FDC_u7A0B_u5206_u652F_u5173_u8054" class="headerlink" title="本地分支与远程分支关联"></a>本地分支与远程分支关联</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// <span class="keyword">debug</span> 为创建的分支</span><br><span class="line">git branch --<span class="keyword">set</span>-upstream <span class="keyword">debug</span> origin/<span class="keyword">debug</span></span><br></pre></td></tr></table></figure>
+<h1 id="u653E_u5F03_u672C_u5730_u4FEE_u6539__u5F3A_u5236_u66F4_u65B0"><a href="#u653E_u5F03_u672C_u5730_u4FEE_u6539__u5F3A_u5236_u66F4_u65B0" class="headerlink" title="放弃本地修改 强制更新"></a>放弃本地修改 强制更新</h1><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git fetch --all      // 下载远程的库的内容，不做任何的合并</span><br><span class="line">git reset --hard origin/<span class="keyword">master</span>   <span class="title">// 把HEAD</span>指向刚刚下载的最新的版本</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer>
@@ -172,9 +173,11 @@ var duoshuoQuery = {short_name:"ctolex"};
   <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/categories/java/">java</a><small>6</small></li>
+    <li><a href="/categories/java/">java</a><small>7</small></li>
   
     <li><a href="/categories/javascript/">javascript</a><small>1</small></li>
+  
+    <li><a href="/categories/os-x/">os x</a><small>1</small></li>
   
     <li><a href="/categories/vim/">vim</a><small>1</small></li>
   
@@ -186,7 +189,7 @@ var duoshuoQuery = {short_name:"ctolex"};
   
     <li><a href="/categories/观后感/">观后感</a><small>1</small></li>
   
-    <li><a href="/categories/读书笔记/">读书笔记</a><small>5</small></li>
+    <li><a href="/categories/读书笔记/">读书笔记</a><small>6</small></li>
   
     <li><a href="/categories/随感/">随感</a><small>1</small></li>
   
