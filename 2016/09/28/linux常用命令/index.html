@@ -78,10 +78,13 @@
     </header>
     <div class="entry">
       
-        <ul>
-<li><p>查看文件大小</p>
+        <p><em>linux常用命令记录，方便查找</em><br><a id="more"></a></p>
+<ul>
+<li><p>查看文件大小 du</p>
   <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="constant">@bsso</span> yayu]<span class="preprocessor"># du -h --max-depth=1 work/testing</span></span><br><span class="line"><span class="number">27</span>M     work/testing/logs</span><br><span class="line"><span class="number">35</span>M     work/testing</span><br><span class="line">[root<span class="constant">@bsso</span> yayu]<span class="preprocessor"># du -h --max-depth=1 work/testing/*</span></span><br><span class="line"><span class="number">8.0</span>K    work/testing/<span class="function"><span class="keyword">func</span>.<span class="title">php</span></span></span><br><span class="line"><span class="number">27</span>M     work/testing/logs</span><br><span class="line"><span class="number">8.1</span>M    work/testing/nohup.out</span><br><span class="line"><span class="number">8.0</span>K    work/testing/testing_c.php</span><br><span class="line"><span class="number">12</span>K     work/testing/testing_func_reg.php</span><br><span class="line"><span class="number">8.0</span>K    work/testing/testing_get.php</span><br><span class="line"><span class="number">8.0</span>K    work/testing/testing_g.php</span><br><span class="line"><span class="number">8.0</span>K    work/testing/var.php</span><br></pre></td></tr></table></figure>
 </li>
+<li><p>查找文件</p>
+  <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">find</span> . -name <span class="string">"*.log"</span>    <span class="comment">// 查找当前文件夹下面的 “.log” 结尾的文件</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 
       
@@ -183,6 +186,8 @@ var duoshuoQuery = {short_name:"ctolex"};
   
     <li><a href="/categories/os-x/">os x</a><small>1</small></li>
   
+    <li><a href="/categories/spring/">spring</a><small>1</small></li>
+  
     <li><a href="/categories/vim/">vim</a><small>1</small></li>
   
     <li><a href="/categories/代码管理/">代码管理</a><small>1</small></li>
@@ -193,7 +198,7 @@ var duoshuoQuery = {short_name:"ctolex"};
   
     <li><a href="/categories/观后感/">观后感</a><small>1</small></li>
   
-    <li><a href="/categories/读书笔记/">读书笔记</a><small>6</small></li>
+    <li><a href="/categories/读书笔记/">读书笔记</a><small>7</small></li>
   
     <li><a href="/categories/随感/">随感</a><small>1</small></li>
   
