@@ -87,17 +87,23 @@
 <h3 id="u8F6C_u6362_u955C_u50CF"><a href="#u8F6C_u6362_u955C_u50CF" class="headerlink" title="转换镜像"></a>转换镜像</h3><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdiutil <span class="built_in">convert</span> -<span class="built_in">format</span> UDRW -o ~/<span class="built_in">path</span>/to/target.img ~/<span class="built_in">path</span>/to/ubuntu.iso</span><br></pre></td></tr></table></figure>
 <p>注意：os x 会自动在 .img 后面添加 .dmg</p>
 <h3 id="U_u76D8_u51C6_u5907"><a href="#U_u76D8_u51C6_u5907" class="headerlink" title="U盘准备"></a>U盘准备</h3><ul>
-<li><p>插入U盘前执行</p>
-  <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">diskutil <span class="type">list</span></span><br></pre></td></tr></table></figure>
-</li>
+<li>插入U盘前执行</li>
+</ul>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">diskutil <span class="type">list</span></span><br></pre></td></tr></table></figure>
+<ul>
 <li><p>插入U盘后再次执行，确定U盘的设备符: /dev/diskN  (N为0，1，2 ….) ，假设为 /dev/disk2</p>
 </li>
-<li><p>卸载U盘</p>
-  <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">	diskutil unmountDisk /dev/diskN</span><br><span class="line"><span class="escape">``</span><span class="escape">` </span></span><br><span class="line"></span><br><span class="line">### 写入U盘</span><br></pre></td></tr></table></figure>
+<li><p>卸载U盘    </p>
 </li>
 </ul>
-<p>sudo dd if=/path/to/downloaded.img of=/dev/rdiskN bs=1m<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">注意:</span><br><span class="line"></span><br><span class="line">* 如果 <span class="number">1</span>m 无效，换成 <span class="number">1</span>M</span><br><span class="line">* 镜像写入完成后，mac os会提醒U盘无法识别，正常。 </span><br><span class="line"></span><br><span class="line"><span class="preprocessor">### 退出U盘</span></span><br></pre></td></tr></table></figure></p>
-<p>diskutil eject /dev/diskN<br>```</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">diskutil unmountDisk <span class="regexp">/dev/</span>diskN</span><br></pre></td></tr></table></figure>
+<h3 id="u5199_u5165U_u76D8"><a href="#u5199_u5165U_u76D8" class="headerlink" title="写入U盘"></a>写入U盘</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="tag">dd</span> <span class="keyword">if</span>=/path/to/downloaded<span class="class">.img</span> of=/dev/rdiskN bs=<span class="number">1</span>m</span><br></pre></td></tr></table></figure>
+<p>注意:</p>
+<ul>
+<li>如果 1m 无效，换成 1M</li>
+<li>镜像写入完成后，mac os会提醒U盘无法识别，正常。 </li>
+</ul>
+<h3 id="u9000_u51FAU_u76D8"><a href="#u9000_u51FAU_u76D8" class="headerlink" title="退出U盘"></a>退出U盘</h3><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">diskutil eject <span class="regexp">/dev/</span>diskN</span><br></pre></td></tr></table></figure>
 <p>结束</p>
 
       
